@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Phoenix Detailing Cardiff">
+  <rect width="128" height="128" fill="#0b0b0c"/>
+  <g fill="#e85e1e" transform="translate(0 26)">
+    <path d="M61 31 L3 2 L23 30 L5 31 L34 48 L61 46 Z"/>
+    <path d="M67 31 L125 2 L105 30 L123 31 L94 48 L67 46 Z"/>
+    <path d="M64 17 L73 30 L70 49 L64 57 L58 49 L55 30 Z"/>
+    <path d="M58 47 L47 73 L61 55 L64 76 L67 55 L81 73 L70 47 Z"/>
+    <path d="M64 0 L73 12 L64 25 L55 12 Z"/>
+    <path d="M56 8 L38 13 L56 19 Z"/>
+  </g>
+</svg>
