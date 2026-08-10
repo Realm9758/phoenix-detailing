@@ -1,0 +1,74 @@
+.section {
+  background: var(--ink-2);
+  border-top: 1px solid var(--line);
+}
+
+.head {
+  display: grid;
+  gap: var(--s3);
+  padding-bottom: var(--s6);
+  max-width: 54rem;
+}
+
+/* Sponsor bands, not a card grid: rules across the full measure, each service
+   a row on the livery. Number column reads as a scrutineering list. */
+/* Held narrower than the full shell so the claim and its source sit in one
+   read rather than either end of a long empty rule. */
+.list {
+  list-style: none;
+  padding: 0;
+  max-width: 72rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.375rem;
+  padding-block: var(--s4);
+  border-top: 1px solid var(--line);
+  transition: background 220ms var(--ease);
+}
+
+.list li:last-child .row {
+  border-bottom: 1px solid var(--line);
+}
+
+.row:hover {
+  background: color-mix(in srgb, var(--orange) 8%, transparent);
+}
+
+.name {
+  color: var(--fg);
+}
+
+.detail {
+  color: var(--fg-2);
+  max-width: 62ch;
+}
+
+/* Where the claim came from. Small, quiet, and never omitted: it is the
+   reason the list is trustworthy. */
+.source {
+  align-self: start;
+  justify-self: start;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--line-strong);
+  color: var(--fg-3);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (min-width: 48rem) {
+  .row {
+    grid-template-columns: minmax(12rem, 16rem) 1fr auto;
+    align-items: baseline;
+    gap: var(--s4);
+  }
+  .source {
+    align-self: center;
+  }
+}

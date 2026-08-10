@@ -1,0 +1,57 @@
+/* Sticky action bar for phones. Most enquiries will arrive from someone
+   holding the phone they're about to call with, so the two things they can do
+   stay within thumb reach the whole way down the page. */
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 2px;
+  background: var(--orange);
+  padding-bottom: max(2px, env(safe-area-inset-bottom));
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding-block: 1rem;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.item svg {
+  color: var(--orange);
+}
+
+.primary {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.primary svg {
+  color: var(--ink);
+}
+
+/* Keeps the last section clear of the dock. */
+.spacer {
+  height: 4rem;
+}
+
+@media (min-width: 52rem) {
+  .dock,
+  .spacer {
+    display: none;
+  }
+}

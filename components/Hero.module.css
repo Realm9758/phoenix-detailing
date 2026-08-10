@@ -1,0 +1,156 @@
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--ink);
+}
+
+/* Type side ---------------------------------------------------------------- */
+
+.type {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--s3);
+  padding-block: var(--s4) var(--s3);
+  padding-inline: var(--gutter);
+}
+
+.headline {
+  color: var(--fg);
+}
+
+/* The phrase the customers kept reaching for, cut in vinyl. It holds together
+   on one line at every width, because splitting "brand" from "new" would break the
+   quote it came from. */
+.headline em {
+  font-style: normal;
+  color: var(--orange);
+  white-space: nowrap;
+}
+
+.standfirst {
+  max-width: 46ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+/* Their own banner claims, stamped along a strip beneath the actions. Each one
+   stays whole and the row wraps between them. */
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  padding-top: var(--s3);
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.strip li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.strip li + li::before {
+  content: "";
+  position: absolute;
+  left: -0.7rem;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  background: var(--orange);
+  transform: translateY(-50%);
+}
+
+/* Photo side --------------------------------------------------------------- */
+
+.shot {
+  position: relative;
+}
+
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+}
+
+/* On a phone the photograph is the proof, so the cut edge and the car itself
+   have to clear the fold rather than a strip of ceiling. The window sits low in
+   the source frame, where the car is. */
+@media (max-width: 59.999rem) {
+  .hero {
+    /* Keeps the headline from eating the viewport before the photo starts. */
+    --hero-display: clamp(3rem, 13vw, 4rem);
+  }
+  .headline {
+    font-size: var(--hero-display);
+  }
+  .shot {
+    aspect-ratio: 5 / 4;
+  }
+  .shot img {
+    object-position: 50% 68%;
+  }
+}
+
+/* The orange sits *behind* the photograph and is revealed only along the cut,
+   so the panel edge reads as vinyl laid over bodywork rather than as a border. */
+.shot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--orange);
+  z-index: 1;
+}
+
+.shot img {
+  position: relative;
+  z-index: 2;
+}
+
+/* The cut sits on the panel's leading edge, the way it does on desktop, which
+   on a phone means the top. Put it at the bottom and the world's signature
+   geometry falls below the fold, leaving the first viewport with a photograph
+   where it was promised a cut vinyl panel. */
+@media (max-width: 59.999rem) {
+  .shot::before {
+    clip-path: polygon(0 3.5vw, 100% 0, 100% 100%, 0 100%);
+  }
+  .shot img {
+    clip-path: polygon(0 7vw, 100% 3.2vw, 100% 100%, 0 100%);
+  }
+}
+
+@media (min-width: 60rem) {
+  .hero {
+    grid-template-columns: 1.06fr 0.94fr;
+    align-items: stretch;
+    min-height: min(100svh, 54rem);
+  }
+
+  .type {
+    padding-block: var(--s8);
+    padding-inline: var(--gutter) var(--s6);
+    max-width: 46rem;
+    margin-left: auto;
+  }
+
+  .shot {
+    min-height: 100%;
+  }
+
+  /* One angle, used everywhere a panel is cut. */
+  .shot::before {
+    clip-path: polygon(4.4vw 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .shot img {
+    clip-path: polygon(6vw 0, 100% 0, 100% 100%, 1.6vw 100%);
+  }
+}

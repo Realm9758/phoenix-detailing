@@ -1,0 +1,118 @@
+.section {
+  position: relative;
+  background: var(--ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s6);
+  align-items: center;
+}
+
+.panel {
+  display: grid;
+  gap: var(--s4);
+  align-content: start;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+/* The show plate: their own artifact, rebuilt as the contact block. */
+.plateBlock {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) var(--s4);
+  max-width: 26rem;
+}
+
+.plateBlock svg {
+  width: 3rem;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+.plateLines {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.plateName {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 0.95;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.plateSub {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.rows {
+  display: grid;
+  gap: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-block: var(--s3);
+  border-top: 1px solid var(--line);
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  transition: color 160ms var(--ease);
+}
+
+.rows > :last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+a.row:hover {
+  color: var(--orange-hi);
+}
+
+.row svg {
+  color: var(--orange);
+  flex-shrink: 0;
+  /* The nudge lives on the icon, so nothing in the row is laid out twice. */
+  transition: transform 220ms var(--ease);
+}
+
+a.row:hover svg {
+  transform: translateX(0.35rem);
+}
+
+.note {
+  color: var(--fg-3);
+  font-size: 0.9375rem;
+}
+
+.shot {
+  position: relative;
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  clip-path: polygon(0 0, 100% 3.2vw, 100% 100%, 0 calc(100% - 3.2vw));
+}
+
+@media (min-width: 62rem) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s8);
+  }
+}

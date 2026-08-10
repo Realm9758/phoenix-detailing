@@ -1,0 +1,97 @@
+/* The reviews sit on the orange. This is the page's one drenched region: the
+   proof is the loudest thing on the site, and black on orange is the livery's
+   own pairing at 5.8:1. */
+/* The page's one drenched region, cut top and bottom so the whole band reads
+   as a single piece of vinyl laid across the bodywork. The extra block padding
+   keeps the copy clear of the diagonals. */
+.section {
+  background: var(--orange);
+  color: var(--ink);
+  padding-block: calc(var(--s8) + 3.2vw);
+}
+
+.head {
+  display: grid;
+  gap: var(--s3);
+  padding-bottom: var(--s6);
+  max-width: 54rem;
+}
+
+.head h2 {
+  color: var(--ink);
+}
+
+/* Everything on the orange field is black. Hierarchy comes from size and
+   weight, never from mixing a colour back toward the background, because that route
+   drops straight through the contrast floor. */
+.head p {
+  color: var(--ink);
+}
+
+.grid {
+  columns: 1;
+  column-gap: var(--s4);
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  break-inside: avoid;
+  margin-bottom: var(--s4);
+  padding-top: var(--s3);
+  border-top: 2px solid var(--ink);
+}
+
+.quote {
+  margin: 0 0 var(--s3);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: none;
+}
+
+.who {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+
+.name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.when {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.note {
+  padding-top: var(--s5);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  max-width: 60ch;
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    columns: 2;
+  }
+}
+
+@media (min-width: 76rem) {
+  .grid {
+    columns: 3;
+  }
+}

@@ -1,0 +1,358 @@
+/* ==========================================================================
+   Phoenix Detailing Cardiff: Club Livery
+   ==========================================================================
+
+   The world is British club-motorsport livery: flat cut vinyl laid on
+   bodywork, number roundels, scrutineering stickers, sponsor bands. Every
+   surface here is either bodywork (near-black), vinyl (orange), or paint
+   (livery white). Nothing glows, nothing is glass, nothing is a gradient.
+   Vinyl has a hard edge, and that edge is the whole design.
+
+   The orange is sampled from the phoenix mark on their own show plate and
+   workshop banner (photographed at hue ~18deg) with the saturation the camera
+   lost put back.
+
+   Contrast note that governs the whole palette: livery white on this orange is
+   only 2.94:1, so text sitting on an orange field is always black. That is the
+   classic livery pairing anyway.
+   ========================================================================== */
+
+:root {
+  /* Bodywork */
+  --ink: #0b0b0c;
+  --ink-2: #121214;
+  --ink-3: #1a1a1d;
+
+  /* Vinyl */
+  --orange: #e85e1e;
+  --orange-hi: #ff8a42;
+  --copper: #a63e12;
+
+  /* Paint */
+  --paper: #f2efe9;
+
+  /* Foreground: secondary tones are warmed off the paint, never grey */
+  --fg: #f2efe9;
+  --fg-2: #b9b0a4;
+  --fg-3: #8b8278;
+
+  /* Cut lines */
+  --line: rgba(242, 239, 233, 0.14);
+  --line-strong: rgba(242, 239, 233, 0.32);
+
+  /* Type */
+  --display: var(--font-display), "Arial Narrow", sans-serif;
+  --text: var(--font-text), "Helvetica Neue", Arial, sans-serif;
+
+  /* Space */
+  --s1: 0.5rem;
+  --s2: 1rem;
+  --s3: 1.5rem;
+  --s4: 2rem;
+  --s5: 3rem;
+  --s6: 4.5rem;
+  --s7: 6rem;
+  --s8: clamp(5rem, 11vw, 9rem);
+
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --measure: 68ch;
+
+  /* Motion. One authored moment: vinyl squeegeed onto a panel */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 900ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--copper) var(--ink);
+  /* Clears the sticky nav so an anchored heading is not hidden under it. */
+  scroll-padding-top: 5.5rem;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* --- Surfaces the browser draws, themed anyway ---------------------------- */
+
+::selection {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange-hi);
+  outline-offset: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--copper);
+  border: 3px solid var(--ink);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange);
+}
+
+/* ==========================================================================
+   Type scale
+   ========================================================================== */
+
+.display {
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+h1.display {
+  /* Display ceiling is 6rem per the craft floor; condensed lets it run wide
+     without running tall. */
+  font-size: clamp(3.5rem, 11vw, 6rem);
+}
+
+h2.display {
+  font-size: clamp(2.5rem, 6.5vw, 4rem);
+}
+
+h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+p {
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+.lede {
+  font-size: clamp(1.125rem, 1.7vw, 1.375rem);
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+
+/* Scrutineering label: the small stamped caption on a sticker or a panel.
+   Tabular figures because these carry numbers. */
+.stamp {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-3);
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.shell {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+section {
+  position: relative;
+}
+
+.band-pad {
+  padding-block: var(--s8);
+}
+
+/* ==========================================================================
+   Livery primitives
+   ========================================================================== */
+
+/* The roundel: a race number disc. Here it carries the phoenix mark, never a
+   section number. The sequence isn't information anyone needs. */
+.roundel {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 6px var(--paper);
+}
+
+/* A vinyl field: flat colour, hard edge, black type. */
+.vinyl {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+/* The hard diagonal a vinyl panel is cut on. One angle, used everywhere a
+   panel meets another: the hero's photo edge, the contact photograph, and the
+   full-bleed orange panel. */
+.cut-panel {
+  clip-path: polygon(0 3.2vw, 100% 0, 100% 100%, 0 calc(100% - 3.2vw));
+}
+
+/* Sponsor band: the livery's answer to a card grid. Rules, not boxes. */
+.band {
+  border-top: 1px solid var(--line);
+}
+.band:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+/* Show plate: black ground, orange mark, white lettering, their own artifact. */
+.plate {
+  background: var(--ink);
+  color: var(--paper);
+  border: 2px solid var(--paper);
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Actions
+   ========================================================================== */
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.6rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  transition: background 180ms var(--ease), color 180ms var(--ease),
+    border-color 180ms var(--ease), transform 180ms var(--ease);
+}
+
+.action:active {
+  transform: translateY(1px);
+}
+
+/* Primary sits on bodywork as a vinyl block; black on orange, 5.8:1. */
+.action--primary {
+  background: var(--orange);
+  color: var(--ink);
+}
+.action--primary:hover {
+  background: var(--orange-hi);
+}
+
+/* Secondary is cut vinyl with the colour removed: outline only. */
+.action--ghost {
+  border-color: var(--line-strong);
+  color: var(--fg);
+}
+.action--ghost:hover {
+  border-color: var(--orange);
+  color: var(--orange-hi);
+}
+
+/* On an orange field the ghost inverts to black-on-orange. */
+.vinyl .action--ghost {
+  border-color: rgba(11, 11, 12, 0.4);
+  color: var(--ink);
+}
+.vinyl .action--ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   Motion: the one authored moment
+   ==========================================================================
+   Vinyl goes on with a squeegee: it arrives from one edge and is pressed
+   flat. Sections wipe in along the same diagonal the panels are cut on.
+   Content is visible by default; the wipe is an enhancement layered on top,
+   so nothing depends on JavaScript to be readable. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .squeegee {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.001;
+    transition: clip-path var(--dur) var(--ease), opacity 420ms var(--ease);
+  }
+  .squeegee[data-laid="true"] {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  /* Staggered children within one laid panel */
+  .squeegee[data-laid="true"] > * {
+    animation: press 620ms var(--ease) backwards;
+  }
+  .squeegee[data-laid="true"] > *:nth-child(2) {
+    animation-delay: 70ms;
+  }
+  .squeegee[data-laid="true"] > *:nth-child(3) {
+    animation-delay: 140ms;
+  }
+  .squeegee[data-laid="true"] > *:nth-child(4) {
+    animation-delay: 210ms;
+  }
+}
+
+@keyframes press {
+  from {
+    transform: translateY(0.6rem);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}

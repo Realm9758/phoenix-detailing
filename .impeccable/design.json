@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-10T00:00:00.000Z",
+  "title": "Design System: Phoenix Detailing Cardiff",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Bodywork Black",
+        "canonical": "#0b0b0c",
+        "tonalRamp": ["#0b0b0c", "#17171a", "#2b2b30", "#414147", "#5a5a61", "#7a7a82", "#a5a5ac", "#d6d6da"]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Bodywork Black Raised",
+        "canonical": "#121214",
+        "tonalRamp": ["#0a0a0b", "#121214", "#212125", "#333338", "#4c4c53", "#6e6e76", "#9d9da5", "#d2d2d7"]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Bodywork Black Lifted",
+        "canonical": "#1a1a1d",
+        "tonalRamp": ["#0d0d0f", "#1a1a1d", "#28282d", "#3c3c43", "#55555d", "#767680", "#a3a3ac", "#d5d5da"]
+      },
+      "orange": {
+        "role": "primary",
+        "displayName": "Vinyl Orange",
+        "canonical": "#e85e1e",
+        "tonalRamp": ["#3d1605", "#5d2208", "#83300c", "#a63e12", "#c94d17", "#e85e1e", "#ff8a42", "#ffc59c"]
+      },
+      "orange-hi": {
+        "role": "primary",
+        "displayName": "Vinyl Orange Bright",
+        "canonical": "#ff8a42",
+        "tonalRamp": ["#46220c", "#653111", "#8b4517", "#b25a1f", "#d97129", "#ff8a42", "#ffae7d", "#ffd7bd"]
+      },
+      "copper": {
+        "role": "tertiary",
+        "displayName": "Copper (browser chrome only)",
+        "canonical": "#a63e12",
+        "tonalRamp": ["#2e1105", "#471a07", "#63250a", "#82310e", "#a63e12", "#cb5320", "#e8814f", "#f5bb9c"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Livery White",
+        "canonical": "#f2efe9",
+        "tonalRamp": ["#26241f", "#3b3830", "#544f45", "#726c5f", "#948d7e", "#b9b0a4", "#d8d2c8", "#f2efe9"]
+      },
+      "fg": {
+        "role": "neutral",
+        "displayName": "Paint (foreground)",
+        "canonical": "#f2efe9",
+        "tonalRamp": ["#26241f", "#3b3830", "#544f45", "#726c5f", "#948d7e", "#b9b0a4", "#d8d2c8", "#f2efe9"]
+      },
+      "fg-2": {
+        "role": "neutral",
+        "displayName": "Warm Secondary",
+        "canonical": "#b9b0a4",
+        "tonalRamp": ["#211e1a", "#35312b", "#4d483f", "#6a6357", "#8b8278", "#b9b0a4", "#d6d0c7", "#efece6"]
+      },
+      "fg-3": {
+        "role": "neutral",
+        "displayName": "Warm Tertiary",
+        "canonical": "#8b8278",
+        "tonalRamp": ["#1c1a17", "#2e2b26", "#443f38", "#5e584e", "#8b8278", "#aaa298", "#cbc5bc", "#e9e5df"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Cut Line",
+        "canonical": "rgba(242, 239, 233, 0.14)",
+        "tonalRamp": ["rgba(242,239,233,0.04)", "rgba(242,239,233,0.08)", "rgba(242,239,233,0.14)", "rgba(242,239,233,0.2)", "rgba(242,239,233,0.32)", "rgba(242,239,233,0.48)", "rgba(242,239,233,0.7)", "rgba(242,239,233,1)"]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Cut Line Strong",
+        "canonical": "rgba(242, 239, 233, 0.32)",
+        "tonalRamp": ["rgba(242,239,233,0.04)", "rgba(242,239,233,0.08)", "rgba(242,239,233,0.14)", "rgba(242,239,233,0.2)", "rgba(242,239,233,0.32)", "rgba(242,239,233,0.48)", "rgba(242,239,233,0.7)", "rgba(242,239,233,1)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The page's single h1. Big Shoulders 800 uppercase, ceiling 6rem; overridden to clamp(3rem, 13vw, 4rem) in the hero below 60rem so the headline does not eat the viewport before the photograph starts."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Every section h2, uppercase in the condensed display face."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Service names and equivalent band row heads."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "The standfirst beneath a heading, in warm secondary. One per section."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running copy in Chivo, capped at the 68ch measure by default."
+      },
+      "label": {
+        "displayName": "Label / Stamp",
+        "purpose": "Scrutineering caption: small, tracked, uppercase, tabular figures. Sits beneath or beside content, never above a heading as an eyebrow."
+      }
+    },
+    "shadows": [
+      {
+        "name": "roundel-rings",
+        "value": "inset 0 0 0 3px #0b0b0c, inset 0 0 0 6px #f2efe9",
+        "purpose": "Concentric rings on the race-number disc. This is a stroke, not an elevation, and it is the only sanctioned use of box-shadow in the system. There are no depth shadows."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing curve in the build; used by the squeegee wipe and every state transition."
+      },
+      {
+        "name": "dur",
+        "value": "900ms",
+        "purpose": "The squeegee wipe: clip-path inset(0 100% 0 0) to inset(0 0 0 0). One authored moment, used once, on the before/after diptych."
+      },
+      {
+        "name": "press",
+        "value": "620ms cubic-bezier(0.16, 1, 0.3, 1) backwards, stagger 70ms",
+        "purpose": "Staggered children lifting 0.6rem within a laid panel."
+      },
+      {
+        "name": "state",
+        "value": "160ms-220ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Hover, focus and active transitions on actions, nav links, band rows and contact rows."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: no-preference)",
+        "purpose": "The entire wipe is scoped behind no-preference, and the class is attached client-side after mount so content is visible without JavaScript."
+      }
+    ],
+    "breakpoints": [
+      { "name": "bands", "value": "48rem" },
+      { "name": "dock-off", "value": "52rem" },
+      { "name": "hero-split", "value": "60rem" },
+      { "name": "contact-split", "value": "62rem" },
+      { "name": "nav-phone", "value": "64rem" },
+      { "name": "reviews-three-up", "value": "76rem" },
+      { "name": "shell-max", "value": "88rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "action-primary",
+      "description": "The WhatsApp/enquiry action. A block of vinyl laid on bodywork; black on orange at 5.84:1.",
+      "html": "<a class=\"ds-action ds-action-primary\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.5 20.5l1.3-4.4A8.2 8.2 0 1 1 8 19.3l-4.5 1.2Z\"/><path d=\"M9 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.5l.7 1.7c.1.3 0 .5-.1.7l-.4.5c-.2.2-.3.3-.1.6a7 7 0 0 0 3 2.6c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5a1.9 1.9 0 0 1-1.3 1.6 3.6 3.6 0 0 1-2.4-.3 10 10 0 0 1-4.9-4.7 3.7 3.7 0 0 1-.5-2.3 2 2 0 0 1 .3-.8Z\"/></svg>Message Scott</a>",
+      "css": ".ds-action { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 1.6rem; font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 700; font-size: 1.0625rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border: 2px solid transparent; border-radius: 0; cursor: pointer; transition: background 180ms cubic-bezier(0.16,1,0.3,1), color 180ms cubic-bezier(0.16,1,0.3,1), border-color 180ms cubic-bezier(0.16,1,0.3,1), transform 180ms cubic-bezier(0.16,1,0.3,1); } .ds-action-primary { background: var(--orange, #e85e1e); color: var(--ink, #0b0b0c); } .ds-action-primary:hover { background: var(--orange-hi, #ff8a42); } .ds-action-primary:active { transform: translateY(1px); } .ds-action-primary:focus-visible { outline: 3px solid var(--orange-hi, #ff8a42); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Action",
+      "kind": "button",
+      "refersTo": "action-ghost",
+      "description": "Secondary action on bodywork: cut vinyl with the colour removed, outline only.",
+      "html": "<a class=\"ds-action ds-action-ghost\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6.5 3h-2A1.5 1.5 0 0 0 3 4.6C3 13.1 10.9 21 19.4 21a1.5 1.5 0 0 0 1.6-1.5v-2a1 1 0 0 0-.8-1l-3.3-.7a1 1 0 0 0-1 .4l-1 1.3a13.6 13.6 0 0 1-5.4-5.4l1.3-1a1 1 0 0 0 .4-1l-.7-3.3a1 1 0 0 0-1-.8Z\"/></svg>Call 07507 709167</a>",
+      "css": ".ds-action { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 1.6rem; font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 700; font-size: 1.0625rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border: 2px solid transparent; border-radius: 0; cursor: pointer; transition: color 180ms cubic-bezier(0.16,1,0.3,1), border-color 180ms cubic-bezier(0.16,1,0.3,1), transform 180ms cubic-bezier(0.16,1,0.3,1); } .ds-action-ghost { background: transparent; border-color: rgba(242,239,233,0.32); color: var(--fg, #f2efe9); } .ds-action-ghost:hover { border-color: var(--orange, #e85e1e); color: var(--orange-hi, #ff8a42); } .ds-action-ghost:active { transform: translateY(1px); } .ds-action-ghost:focus-visible { outline: 3px solid var(--orange-hi, #ff8a42); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Action on Vinyl",
+      "kind": "button",
+      "refersTo": "action-ghost-on-vinyl",
+      "description": "The ghost action sitting on an orange field. Inverts to black-on-orange; a white outline here would drop through the contrast floor.",
+      "html": "<div class=\"ds-vinyl-field\"><a class=\"ds-action-onvinyl\" href=\"#\">Read the reviews</a></div>",
+      "css": ".ds-vinyl-field { background: var(--orange, #e85e1e); padding: 2rem; } .ds-action-onvinyl { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 1.6rem; font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 700; font-size: 1.0625rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border: 2px solid rgba(11,11,12,0.4); border-radius: 0; color: var(--ink, #0b0b0c); transition: border-color 180ms cubic-bezier(0.16,1,0.3,1), transform 180ms cubic-bezier(0.16,1,0.3,1); } .ds-action-onvinyl:hover { border-color: var(--ink, #0b0b0c); color: var(--ink, #0b0b0c); } .ds-action-onvinyl:active { transform: translateY(1px); } .ds-action-onvinyl:focus-visible { outline: 3px solid var(--ink, #0b0b0c); outline-offset: 3px; }"
+    },
+    {
+      "name": "Sponsor Band Row",
+      "kind": "card",
+      "refersTo": "band-row",
+      "description": "The livery's answer to a card grid. A service is a full-width row on a hairline rule with a source chip, never a box.",
+      "html": "<ul class=\"ds-band-list\"><li><div class=\"ds-band-row\"><h3 class=\"ds-band-name\">Ceramic coating</h3><p class=\"ds-band-detail\">Accredited application, paint prepped and corrected first.</p><span class=\"ds-chip\">From their banner</span></div></li><li><div class=\"ds-band-row\"><h3 class=\"ds-band-name\">Paint correction</h3><p class=\"ds-band-detail\">Machine polished to remove swirls and wash marks.</p><span class=\"ds-chip\">From a review</span></div></li></ul>",
+      "css": ".ds-band-list { list-style: none; margin: 0; padding: 0; max-width: 72rem; background: var(--ink-2, #121214); } .ds-band-row { display: grid; grid-template-columns: minmax(12rem, 16rem) 1fr auto; align-items: baseline; gap: 2rem; padding-block: 2rem; border-top: 1px solid rgba(242,239,233,0.14); transition: background 220ms cubic-bezier(0.16,1,0.3,1); } .ds-band-list li:last-child .ds-band-row { border-bottom: 1px solid rgba(242,239,233,0.14); } .ds-band-row:hover { background: color-mix(in srgb, var(--orange, #e85e1e) 8%, transparent); } .ds-band-name { margin: 0; font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 0.95; letter-spacing: -0.01em; text-transform: uppercase; color: var(--fg, #f2efe9); } .ds-band-detail { margin: 0; max-width: 62ch; color: var(--fg-2, #b9b0a4); font-family: var(--text, Chivo, 'Helvetica Neue', Arial, sans-serif); font-size: 1.0625rem; line-height: 1.6; } .ds-chip { align-self: center; justify-self: start; padding: 0.25rem 0.5rem; border: 1px solid rgba(242,239,233,0.32); border-radius: 0; color: var(--fg-3, #8b8278); font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }"
+    },
+    {
+      "name": "Source Chip",
+      "kind": "chip",
+      "refersTo": "source-chip",
+      "description": "Attribution stamp on a band row: where the claim came from. Static, square, never interactive.",
+      "html": "<span class=\"ds-chip-solo\">From their banner</span>",
+      "css": ".ds-chip-solo { display: inline-block; padding: 0.25rem 0.5rem; border: 1px solid rgba(242,239,233,0.32); border-radius: 0; color: var(--fg-3, #8b8278); font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky, opaque bodywork. No backdrop-filter anywhere: this is the most persistent surface on the page and glass would break the world on every scroll position. The link row ships at every width and scrolls sideways with a trailing mask fade below 52rem.",
+      "html": "<header class=\"ds-nav\"><div class=\"ds-nav-inner\"><a class=\"ds-lockup\" href=\"#top\"><span class=\"ds-roundel-sm\"><svg viewBox=\"0 0 128 76\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M61 31 L3 2 L23 30 L5 31 L34 48 L61 46 Z\"/><path d=\"M67 31 L125 2 L105 30 L123 31 L94 48 L67 46 Z\"/><path d=\"M64 17 L73 30 L70 49 L64 57 L58 49 L55 30 Z\"/><path d=\"M58 47 L47 73 L61 55 L64 76 L67 55 L81 73 L70 47 Z\"/><path d=\"M64 0 L73 12 L64 25 L55 12 Z\"/><path d=\"M56 8 L38 13 L56 19 Z\"/></svg></span><span class=\"ds-word\">Phoenix<span>Cardiff</span></span></a><nav><ul class=\"ds-links\"><li><a href=\"#services\">Services</a></li><li><a href=\"#work\">Work</a></li><li><a href=\"#reviews\">Reviews</a></li><li><a href=\"#contact\">Contact</a></li></ul></nav></div></header>",
+      "css": ".ds-nav { background: var(--ink, #0b0b0c); border-bottom: 1px solid rgba(242,239,233,0.14); } .ds-nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 4.5rem; padding-inline: clamp(1.25rem, 4vw, 3.5rem); } .ds-lockup { display: inline-flex; align-items: center; gap: 0.75rem; text-decoration: none; flex-shrink: 0; } .ds-roundel-sm { display: grid; place-items: center; width: 2.5rem; aspect-ratio: 1; border-radius: 50%; background: var(--paper, #f2efe9); color: var(--ink, #0b0b0c); box-shadow: inset 0 0 0 3px #0b0b0c, inset 0 0 0 6px #f2efe9; } .ds-roundel-sm svg { width: 1.5rem; display: block; } .ds-word { font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 800; font-size: 1.25rem; line-height: 0.9; letter-spacing: 0.01em; text-transform: uppercase; color: var(--fg, #f2efe9); } .ds-word span { display: block; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.22em; color: var(--orange, #e85e1e); } .ds-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent); } .ds-links::-webkit-scrollbar { display: none; } .ds-links li { flex: 0 0 auto; } .ds-links a { display: inline-block; font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--fg-2, #b9b0a4); padding-block: 0.5rem; border-bottom: 2px solid transparent; transition: color 160ms cubic-bezier(0.16,1,0.3,1), border-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-links a:hover { color: var(--fg, #f2efe9); border-bottom-color: var(--orange, #e85e1e); } .ds-links a:focus-visible { outline: 3px solid var(--orange-hi, #ff8a42); outline-offset: 3px; }"
+    },
+    {
+      "name": "Cut Vinyl Panel",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "The signature geometry. One diagonal angle, one cut per panel, always on the leading edge. The orange sits behind and is clipped less than the content, so it is revealed as a stripe along the cut rather than reading as a border.",
+      "html": "<div class=\"ds-cut-wrap\"><div class=\"ds-cut-under\"></div><div class=\"ds-cut-over\">Cut vinyl panel</div></div>",
+      "css": ".ds-cut-wrap { position: relative; height: 14rem; background: var(--ink, #0b0b0c); } .ds-cut-under { position: absolute; inset: 0; background: var(--orange, #e85e1e); clip-path: polygon(4.4vw 0, 100% 0, 100% 100%, 0 100%); } .ds-cut-over { position: relative; height: 100%; display: grid; place-items: center; background: var(--ink-3, #1a1a1d); color: var(--fg, #f2efe9); font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 800; font-size: 2rem; letter-spacing: -0.01em; text-transform: uppercase; clip-path: polygon(6vw 0, 100% 0, 100% 100%, 1.6vw 100%); }"
+    },
+    {
+      "name": "Show Plate",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "The business's own show plate rebuilt as the contact block: bodywork ground, paint border, orange mark, 4px radius because a physical plate has one.",
+      "html": "<div class=\"ds-plate\"><svg viewBox=\"0 0 128 76\" fill=\"currentColor\" aria-hidden=\"true\" class=\"ds-plate-mark\"><path d=\"M61 31 L3 2 L23 30 L5 31 L34 48 L61 46 Z\"/><path d=\"M67 31 L125 2 L105 30 L123 31 L94 48 L67 46 Z\"/><path d=\"M64 17 L73 30 L70 49 L64 57 L58 49 L55 30 Z\"/><path d=\"M58 47 L47 73 L61 55 L64 76 L67 55 L81 73 L70 47 Z\"/><path d=\"M64 0 L73 12 L64 25 L55 12 Z\"/><path d=\"M56 8 L38 13 L56 19 Z\"/></svg><span class=\"ds-plate-lines\"><span class=\"ds-plate-name\">Phoenix</span><span class=\"ds-plate-sub\">Detailing &amp; Valeting</span></span></div>",
+      "css": ".ds-plate { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem 2rem; max-width: 26rem; background: var(--ink, #0b0b0c); color: var(--paper, #f2efe9); border: 2px solid var(--paper, #f2efe9); border-radius: 4px; } .ds-plate-mark { width: 3rem; flex-shrink: 0; color: var(--orange, #e85e1e); display: block; } .ds-plate-lines { display: grid; gap: 0.125rem; } .ds-plate-name { font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 800; font-size: 1.5rem; line-height: 0.95; letter-spacing: 0.06em; text-transform: uppercase; } .ds-plate-sub { font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-3, #8b8278); }"
+    },
+    {
+      "name": "Mobile Action Dock",
+      "kind": "custom",
+      "refersTo": "dock-primary",
+      "description": "Fixed two-up action bar below 52rem, on a vinyl ground with 2px gaps so the orange reads as the seam between two panels.",
+      "html": "<div class=\"ds-dock\"><a class=\"ds-dock-item ds-dock-primary\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.5 20.5l1.3-4.4A8.2 8.2 0 1 1 8 19.3l-4.5 1.2Z\"/></svg>WhatsApp</a><a class=\"ds-dock-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6.5 3h-2A1.5 1.5 0 0 0 3 4.6C3 13.1 10.9 21 19.4 21a1.5 1.5 0 0 0 1.6-1.5v-2a1 1 0 0 0-.8-1l-3.3-.7a1 1 0 0 0-1 .4l-1 1.3a13.6 13.6 0 0 1-5.4-5.4l1.3-1a1 1 0 0 0 .4-1l-.7-3.3a1 1 0 0 0-1-.8Z\"/></svg>Call</a></div>",
+      "css": ".ds-dock { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 2px; background: var(--orange, #e85e1e); } .ds-dock-item { display: flex; align-items: center; justify-content: center; gap: 0.625rem; padding-block: 1rem; text-decoration: none; background: var(--ink, #0b0b0c); color: var(--fg, #f2efe9); font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 700; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; font-variant-numeric: tabular-nums; } .ds-dock-item svg { color: var(--orange, #e85e1e); display: block; } .ds-dock-primary { background: var(--orange, #e85e1e); color: var(--ink, #0b0b0c); } .ds-dock-primary svg { color: var(--ink, #0b0b0c); } .ds-dock-item:focus-visible { outline: 3px solid var(--orange-hi, #ff8a42); outline-offset: -3px; }"
+    },
+    {
+      "name": "Drenched Review Item",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "A quoted review on the page's one flooded orange region. Every glyph is bodywork black; hierarchy comes from size and weight only.",
+      "html": "<div class=\"ds-drench\"><div class=\"ds-review\"><p class=\"ds-review-quote\">Brought my car back to life. Looks brand new again.</p><div class=\"ds-review-who\"><span class=\"ds-review-name\">Rhys M.</span><span class=\"ds-review-when\">March 2026</span></div></div></div>",
+      "css": ".ds-drench { background: var(--orange, #e85e1e); padding: 2rem; } .ds-review { padding-top: 1.5rem; border-top: 2px solid var(--ink, #0b0b0c); max-width: 32rem; } .ds-review-quote { margin: 0 0 1.5rem; font-family: var(--text, Chivo, 'Helvetica Neue', Arial, sans-serif); font-size: 1.0625rem; line-height: 1.5; color: var(--ink, #0b0b0c); } .ds-review-who { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; } .ds-review-name { font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 700; font-size: 1.125rem; letter-spacing: 0.02em; text-transform: uppercase; color: var(--ink, #0b0b0c); } .ds-review-when { font-family: var(--display, 'Big Shoulders', 'Arial Narrow', sans-serif); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--ink, #0b0b0c); white-space: nowrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cut Vinyl Panel",
+    "overview": "Detailing is work done to a car's painted surface, so this system is built from the graphic language that lives on that surface: cut vinyl, race roundels, sponsor bands, scrutineering stamps. Every surface in the build is one of three materials: bodywork (near-black), vinyl (orange), or paint (livery white). There is no fourth. A surface either is a material or it is a rule drawn between two of them.\n\nThe system is flat by construction. Vinyl has a hard edge, and that edge is the whole design: the shipped page carries no gradient fill, no glass, no glow, no blur, and no drop shadow anywhere. Depth is made by cutting one panel over another on a single diagonal angle and letting the colour beneath show along the cut. The build's one authored motion is the same idea in time: a panel squeegeed on from one edge.\n\nPRODUCT.md records the business's incumbent identity as an orange-to-copper gradient on near-black. The build resolves that into flat fields at the sampled orange, with copper surviving only as browser chrome. That divergence is deliberate and the flat resolution is the system: a gradient cannot be cut from vinyl.",
+    "keyCharacteristics": [
+      "Three materials only: bodywork black, vinyl orange, livery white.",
+      "Zero gradients as painted surfaces, zero glass, zero glow, zero box-shadow depth.",
+      "One diagonal angle, one cut per panel, always on the panel's leading edge.",
+      "Black type on every orange field, always. No exceptions, no opacity.",
+      "Condensed uppercase display over a grotesque text face; rules instead of cards."
+    ],
+    "rules": [
+      {
+        "name": "The Black-On-Orange Rule",
+        "body": "Livery white on the vinyl orange measures 2.94:1 and is therefore banned. Every text role on an orange field (heading, body, name, timestamp, note, action label, icon) is bodywork black at 5.84:1. Hierarchy on orange comes from size and weight only. Never mix a colour toward the orange to make a secondary tone, and never use opacity to soften text on it. Audit test: sample any glyph sitting on the orange; if it is not the bodywork black, it is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Materials Rule",
+        "body": "A surface is bodywork, vinyl, or paint. There is no fourth material and no in-between tint. If a new surface needs to separate from the page, it uses the raised bodywork step or a 1px cut line, not a new colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Drenched Region Rule",
+        "body": "Exactly one region of the page is flooded with vinyl orange (the reviews band, because the proof should be the loudest thing on the site). Everywhere else the orange is a mark, an edge, or an action. A second flooded region weakens the first.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Anything uppercase and tracked is set in the display face: headings, actions, nav links, stamps, labels, wordmarks. Everything sentence-case and running is Chivo. There is no third face and no italic: the hero's emphasis is an em reset to font-style: normal and coloured instead.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Any role that carries a number (phone links, review dates, stamps, dock items) sets font-variant-numeric: tabular-nums. Numbers on this page are evidence and they line up.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Glass Rule",
+        "body": "The nav is opaque bodywork black. backdrop-filter is forbidden anywhere on this site. The nav is the most persistent surface on the page, and a translucent blur bar there would break the world on every scroll position.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Reveal-By-Cut Rule",
+        "body": "When two surfaces need to separate, cut one over the other and let the colour beneath show along the cut. Do not reach for a shadow, a border glow, or a tint.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Angle, Leading Edge Rule",
+        "body": "There is exactly one diagonal in this system, and one cut per panel, always on the panel's leading edge, the edge the reader meets first. On desktop that is the left; when the hero stacks on a phone, the cut moves to the top rather than staying at the bottom, because the world's signature geometry must not fall below the fold. Never cut a panel on two edges to make it look like a parallelogram, and never introduce a second angle.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Rules-Not-Boxes Rule",
+        "body": "Repeating content is a sponsor band: a full-width row separated by a 1px hairline top and bottom, with its metadata as a small outlined chip. Cards are not a structure in this system. Do not wrap a list item in a bordered, padded, radiused box.",
+        "section": "shapes"
+      },
+      {
+        "name": "The One Moment Rule",
+        "body": "This site has one entrance animation and it belongs to one element. State transitions (160-220ms) are the only other motion. A new surface does not get its own reveal.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do set every text role on a vinyl-orange field in bodywork black (5.84:1), and build hierarchy there from size and weight alone.",
+      "Do cut a panel on the single diagonal angle, once, on its leading edge. 3.2vw as the default, 4.4vw/6vw where the hero reveals the orange stripe.",
+      "Do reveal depth by letting an underlying colour show along a cut, never by adding a shadow.",
+      "Do build repeating content as full-width sponsor bands separated by 1px cut-line rules, with a small outlined source chip for metadata.",
+      "Do keep the nav opaque and ship the section link row at every width, scrolling it sideways with a trailing mask fade below 52rem.",
+      "Do author icons and marks as flat SVG on the 24x24 / 2px-stroke construction, inheriting currentColor.",
+      "Do load the display face with display: block; the wrong lettering is worse than a brief blank.",
+      "Do set tabular figures on any role that carries a number."
+    ],
+    "donts": [
+      "Don't put livery white, or any tint of it, on the orange: it measures 2.94:1.",
+      "Don't create a secondary tone by mixing a colour toward its background or by lowering opacity. Change size or weight instead.",
+      "Don't paint a gradient, a glow, a glass panel, or a backdrop-filter on any surface. (Non-painting uses of a gradient, such as the nav's overflow mask-image, are the exception the world already ships and are allowed only as scroll affordances.)",
+      "Don't add a box-shadow for depth. The roundel's inset rings are a stroke and are the only permitted use of the property.",
+      "Don't introduce a second diagonal angle, or cut a panel on more than one edge.",
+      "Don't wrap content in a bordered, radiused, padded card. Corner radius stays at 0 outside the roundel disc and the 4px plate.",
+      "Don't collapse the section navigation into a hamburger, or hide it below a breakpoint.",
+      "Don't give a new section its own entrance animation; the diptych holds the site's one authored moment.",
+      "Don't use copper on content: it is scrollbar chrome only.",
+      "Don't put a small tracked label above a heading as an eyebrow or kicker. The stamp role is a caption that sits beneath or beside content."
+    ]
+  }
+}

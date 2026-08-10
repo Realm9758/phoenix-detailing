@@ -1,0 +1,57 @@
+.footer {
+  background: var(--ink-2);
+  border-top: 1px solid var(--line);
+  padding-block: var(--s5);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lockup svg {
+  width: 2.5rem;
+  color: var(--orange);
+}
+
+.name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.line {
+  color: var(--fg-3);
+  font-size: 0.875rem;
+}
+
+.socials {
+  display: flex;
+  gap: var(--s1);
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line-strong);
+  color: var(--fg-2);
+  transition: color 160ms var(--ease), border-color 160ms var(--ease);
+}
+
+.socials a:hover {
+  color: var(--orange-hi);
+  border-color: var(--orange);
+}

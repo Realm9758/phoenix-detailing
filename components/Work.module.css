@@ -1,0 +1,69 @@
+.section {
+  background: var(--ink);
+}
+
+.head {
+  display: grid;
+  gap: var(--s3);
+  padding-bottom: var(--s5);
+  max-width: 54rem;
+}
+
+/* The diptych. Two panels, one cut line.
+   Deliberately NOT a drag-slider: the two frames are not camera-registered,
+   so sliding one over the other would make the car jump. Side by side is the
+   honest presentation, and two vinyl panels is the native one. */
+.pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3px;
+  background: var(--orange);
+  padding: 3px;
+}
+
+.panel {
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.panel img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 820 / 1146;
+  object-fit: cover;
+}
+
+/* The stage label, stamped into the corner of the panel like a scrutineering
+   sticker. */
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  min-width: 4.25rem;
+  padding: 0.5rem 1rem;
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.caption {
+  padding: var(--s3) var(--s3) var(--s4);
+  color: var(--fg-2);
+  font-size: 0.9375rem;
+  max-width: 42ch;
+}
+
+@media (min-width: 48rem) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
