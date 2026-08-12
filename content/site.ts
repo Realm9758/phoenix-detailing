@@ -220,9 +220,9 @@ export const work = {
         alt: "A black Mercedes G-Class inside the unit under the strip lights, the Phoenix banner on the wall behind it and a Phoenix show plate on its bumper",
       },
       {
-        key: "bentleySeats",
-        caption: "Bentley, rear cabin",
-        alt: "The rear cabin of a Bentley, quilted tan leather seats and burr walnut trim, cleaned and photographed with the door open",
+        key: "bentleyCabin",
+        caption: "Bentley, front cabin",
+        alt: "The front cabin of a Bentley photographed through the open passenger door: burr walnut dashboard, chrome dials, and quilted tan leather seats",
       },
       {
         key: "gtrRear",
