@@ -80,27 +80,40 @@ SCREENSHOTS = [
 # `source-images/photos/` unbuilt: sending fourteen near-identical supercar
 # three-quarters to a page that shows nine would be a slideshow, not a website.
 #
-# `long_edge` is sized to the largest the photograph is ever displayed at,
-# doubled for dense screens. The hero and the contact panel run near half the
-# viewport; the grid tiles never exceed about 420px.
+# TWO RULES DECIDE THIS LIST, and both were learned the hard way.
+#
+# 1. Every photograph on the grid is 3:4 portrait, which is what Scott's phone
+#    shoots. The grid tile is 3:4 too, so `object-fit: cover` has nothing to
+#    crop. A landscape or a square frame in a 3:4 tile loses a quarter of
+#    itself, which is how a photograph of two headlights ended up with the
+#    headlights cut off at the edges.
+# 2. `long_edge` is at least twice the largest size the photograph is ever
+#    displayed at, because half of the people looking at this page are on a
+#    phone or a laptop with a 2x screen and a 1x image reads as soft.
+#    Displayed sizes: hero and contact run near half the viewport; grid tiles
+#    are capped at about 420px by the 88rem shell.
+#
+# Left out deliberately: a photograph of water beading on a panel (a fine
+# picture of water, but a page of cars is not the place for it) and the
+# headlight before/after (a two-up collage at 841px, the only frame in the set
+# that is neither 3:4 nor big enough to show at any size worth showing).
 PHOTOGRAPHS = [
     # The hero. The one frame that says what the place is: a car worth this
-    # much care, square on, under their own banner.
-    {"src": "mclaren-unit.jpeg", "stem": "mclaren-unit", "long_edge": 1800},
+    # much care, square on, under their own banner. Built at native size.
+    {"src": "mclaren-unit.jpeg", "stem": "mclaren-unit", "long_edge": 2048},
     # The contact panel. Their unit, from the road, sign legible: this is the
     # building a customer has to find.
-    {"src": "tvr-outside.jpeg", "stem": "tvr-outside", "long_edge": 1600},
-    # The grid.
-    {"src": "cullinan-outside.jpeg", "stem": "cullinan-outside", "long_edge": 1100},
-    {"src": "bentley-bonnet.jpeg", "stem": "bentley-bonnet", "long_edge": 1100},
-    {"src": "g-class-unit.jpeg", "stem": "g-class-unit", "long_edge": 1100},
-    {"src": "ferrari-shield.jpeg", "stem": "ferrari-shield", "long_edge": 1100},
-    {"src": "bentley-rear-seats.jpeg", "stem": "bentley-seats", "long_edge": 1100},
-    {"src": "beading.jpeg", "stem": "beading", "long_edge": 1100},
-    {"src": "headlights.jpeg", "stem": "headlights", "long_edge": 1100},
-    {"src": "macan-hex.jpeg", "stem": "macan-hex", "long_edge": 1100},
-    {"src": "mclaren-rear.jpeg", "stem": "mclaren-rear", "long_edge": 1100},
-    {"src": "gtr-rear.jpeg", "stem": "gtr-rear", "long_edge": 1100},
+    {"src": "tvr-outside.jpeg", "stem": "tvr-outside", "long_edge": 1800},
+    # The grid, in the order it reads on the page.
+    {"src": "cullinan-outside.jpeg", "stem": "cullinan-outside", "long_edge": 1400},
+    {"src": "mclaren-hex.jpeg", "stem": "mclaren-hex", "long_edge": 1400},
+    {"src": "ferrari-shield.jpeg", "stem": "ferrari-shield", "long_edge": 1400},
+    {"src": "g-class-unit.jpeg", "stem": "g-class-unit", "long_edge": 1400},
+    {"src": "bentley-rear-seats.jpeg", "stem": "bentley-seats", "long_edge": 1400},
+    {"src": "macan-hex.jpeg", "stem": "macan-hex", "long_edge": 1400},
+    {"src": "bentley-bonnet.jpeg", "stem": "bentley-bonnet", "long_edge": 1400},
+    {"src": "gtr-rear.jpeg", "stem": "gtr-rear", "long_edge": 1400},
+    {"src": "defender-outside.jpeg", "stem": "defender-outside", "long_edge": 1400},
 ]
 
 WEBP_QUALITY = "82"

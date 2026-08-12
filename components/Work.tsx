@@ -33,7 +33,7 @@ export function Work() {
                 <Image
                   src={photo}
                   alt={alt}
-                  sizes="(min-width: 48rem) 44vw, 100vw"
+                  sizes="(min-width: 48rem) 28rem, 100vw"
                   placeholder="blur"
                 />
                 <figcaption className={styles.caption}>{stage.caption}</figcaption>
@@ -48,24 +48,20 @@ export function Work() {
             <p>{work.gallery.body}</p>
           </div>
 
-          {/* Wide frames take two columns, which lands them at the same height
-              as the portrait tiles beside them: one grid, two panel shapes,
-              no ragged row. */}
+          {/* One tile shape, and it is the shape the photographs already are,
+              so `cover` has nothing to crop. See the note in the manifest
+              before adding a frame that is not 3:4. */}
           <ul className={styles.grid}>
             {work.gallery.items.map((item) => (
-              <li
-                key={item.key}
-                className={`${styles.tile} ${"wide" in item && item.wide ? styles.wide : ""}`}
-              >
+              <li className={styles.tile} key={item.key}>
                 <figure>
+                  {/* `sizes` describes the tile, not the viewport: two columns
+                      at every width below 64rem, three above. Saying 92vw here
+                      made a phone fetch an 828px file for a 179px tile. */}
                   <Image
                     src={photos[item.key]}
                     alt={item.alt}
-                    sizes={
-                      "wide" in item && item.wide
-                        ? "(min-width: 64rem) 56vw, 100vw"
-                        : "(min-width: 64rem) 28vw, 46vw"
-                    }
+                    sizes="(min-width: 64rem) 30vw, 46vw"
                     placeholder="blur"
                   />
                   <figcaption className="stamp">{item.caption}</figcaption>

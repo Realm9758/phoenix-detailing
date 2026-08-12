@@ -190,27 +190,24 @@ export const work = {
   gallery: {
     heading: "Through the unit",
     body: "Cars booked in, worked on and photographed on the way out.",
+    /**
+     * Order is composed, not arbitrary. Three of these are taken outside the
+     * unit with the same building behind them, and stacking them next to each
+     * other makes the page look like one afternoon in one car park. They sit
+     * on a diagonal instead: first tile, last of the middle row, middle of the
+     * last row. The studio shots, the detail shots and the interior fall
+     * between them.
+     */
     items: [
       {
         key: "cullinanOutside",
-        caption: "Rolls-Royce, on the forecourt",
+        caption: "Rolls-Royce, outside the unit",
         alt: "A black Rolls-Royce Cullinan parked outside the Phoenix Detailing unit in the sun, the Phoenix sign on the wall above it and a Phoenix show plate on its bumper",
       },
       {
-        key: "bentleyBonnet",
-        caption: "A Bentley bonnet, holding the ceiling",
-        alt: "The bonnet of a dark grey Bentley, so clean that the hexagonal ceiling lights above it come back off the paint in a sharp unbroken pattern, the winged B badge in the foreground",
-      },
-      {
-        key: "gClassUnit",
-        caption: "Mercedes G-Class, inside",
-        alt: "A black Mercedes G-Class inside the unit under the strip lights, the Phoenix banner on the wall behind it and a Phoenix show plate on its bumper",
-      },
-      {
-        key: "headlights",
-        caption: "One headlight brought back, one as it arrived",
-        wide: true,
-        alt: "Two photographs of a silver car's headlights side by side: one clear enough to see the reflector inside, the other clouded and yellowed",
+        key: "mclarenHex",
+        caption: "McLaren, doors up",
+        alt: "A black McLaren with both doors raised under a ceiling of hexagonal lights, the pattern reflected across its bonnet and roof, a Phoenix show plate on the floor in front of it",
       },
       {
         key: "ferrariShield",
@@ -218,30 +215,34 @@ export const work = {
         alt: "The front wing of a red Ferrari with the Scuderia shield on it, the paint reflecting a long unbroken line of light",
       },
       {
+        key: "gClassUnit",
+        caption: "Mercedes G-Class, inside",
+        alt: "A black Mercedes G-Class inside the unit under the strip lights, the Phoenix banner on the wall behind it and a Phoenix show plate on its bumper",
+      },
+      {
         key: "bentleySeats",
-        caption: "Quilted leather, cleaned",
+        caption: "Bentley, rear cabin",
         alt: "The rear cabin of a Bentley, quilted tan leather seats and burr walnut trim, cleaned and photographed with the door open",
-      },
-      {
-        key: "beading",
-        caption: "Water standing up on a coated panel",
-        wide: true,
-        alt: "Water in tight round beads standing on a silver panel rather than running off it",
-      },
-      {
-        key: "macanHex",
-        caption: "Porsche Macan, under the lights",
-        alt: "A black Porsche Macan under a ceiling of hexagonal lights, the pattern reflected the length of its bonnet, a Phoenix show plate on the front",
-      },
-      {
-        key: "mclarenRear",
-        caption: "McLaren, from behind",
-        alt: "The rear of a black McLaren from above, the hexagonal ceiling lights reflected across the engine cover, a Phoenix show plate below the tail lights",
       },
       {
         key: "gtrRear",
         caption: "Nissan GT-R, plate still on",
         alt: "The rear of a grey Nissan GT-R parked outside the unit, a Phoenix show plate in place of the number plate and the Phoenix sign on the building behind",
+      },
+      {
+        key: "bentleyBonnet",
+        caption: "Bentley, bonnet",
+        alt: "The bonnet of a dark grey Bentley, so clean that the hexagonal ceiling lights above it come back off the paint in a sharp unbroken pattern, the winged B badge in the foreground",
+      },
+      {
+        key: "defenderOutside",
+        caption: "Land Rover Defender",
+        alt: "A black Land Rover Defender parked outside the unit in the sun, roof rack fitted, the Phoenix sign on the wall behind it and a Phoenix show plate on its bumper",
+      },
+      {
+        key: "macanHex",
+        caption: "Porsche Macan, under the lights",
+        alt: "A black Porsche Macan under a ceiling of hexagonal lights, the pattern reflected the length of its bonnet, a Phoenix show plate on the front",
       },
     ],
   },

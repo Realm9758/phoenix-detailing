@@ -24,15 +24,14 @@ import amgFinished from "./work/amg-finished.webp";
 import mclarenUnit from "./work/mclaren-unit.webp";
 import tvrOutside from "./work/tvr-outside.webp";
 import cullinanOutside from "./work/cullinan-outside.webp";
-import bentleyBonnet from "./work/bentley-bonnet.webp";
-import gClassUnit from "./work/g-class-unit.webp";
+import mclarenHex from "./work/mclaren-hex.webp";
 import ferrariShield from "./work/ferrari-shield.webp";
+import gClassUnit from "./work/g-class-unit.webp";
 import bentleySeats from "./work/bentley-seats.webp";
-import beading from "./work/beading.webp";
-import headlights from "./work/headlights.webp";
 import macanHex from "./work/macan-hex.webp";
-import mclarenRear from "./work/mclaren-rear.webp";
+import bentleyBonnet from "./work/bentley-bonnet.webp";
 import gtrRear from "./work/gtr-rear.webp";
+import defenderOutside from "./work/defender-outside.webp";
 
 export const photos = {
   /** Mercedes-AMG E-Class under snow foam. Pairs with `amgFinished`. */
@@ -43,24 +42,28 @@ export const photos = {
   mclarenUnit,
   /** The unit from the road, sign legible. The contact panel. */
   tvrOutside,
+
+  /**
+   * The grid, in page order. Every one of these is 3:4, which is the tile's
+   * shape too, so none of them is cropped to fit. Keep it that way: a frame
+   * that is not 3:4 either gets a place of its own or does not go on.
+   */
   /** Rolls-Royce Cullinan outside the unit. */
   cullinanOutside,
-  /** A Bentley bonnet returning the ceiling lights. */
-  bentleyBonnet,
-  /** Mercedes G-Class inside, banner behind it. */
-  gClassUnit,
+  /** McLaren under the hexagon lights, doors up. */
+  mclarenHex,
   /** A Ferrari's front wing and shield. */
   ferrariShield,
+  /** Mercedes G-Class inside, banner behind it. */
+  gClassUnit,
   /** Quilted leather in the back of a Bentley. */
   bentleySeats,
-  /** Water standing in beads on a coated panel. */
-  beading,
-  /** Two headlights, one restored and one not. Landscape. */
-  headlights,
   /** Porsche Macan under the hexagon lights. */
   macanHex,
-  /** The back of a McLaren. */
-  mclarenRear,
+  /** A Bentley bonnet returning the ceiling lights. */
+  bentleyBonnet,
   /** Nissan GT-R, show plate still on. */
   gtrRear,
+  /** Land Rover Defender outside the unit. */
+  defenderOutside,
 } as const;
