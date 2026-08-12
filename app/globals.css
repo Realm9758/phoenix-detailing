@@ -232,6 +232,15 @@ section {
   box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 6px var(--paper);
 }
 
+/* The same disc struck as a show plate: black ground, orange mark, white ring.
+   Scott's mark is drawn for a black ground (his sign, his plates, his logo
+   file), and orange on paper is only 3.0:1 where orange on black is 5.8:1. */
+.roundel--plate {
+  background: var(--ink);
+  color: var(--orange);
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 6px var(--ink);
+}
+
 /* A vinyl field: flat colour, hard edge, black type. */
 .vinyl {
   background: var(--orange);

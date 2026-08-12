@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "images": "python3 tools/build-images.py"
+    "images": "python3 tools/build-images.py",
+    "brand": "python3 tools/build-brand.py"
   },
   "dependencies": {
     "next": "16.3.0",

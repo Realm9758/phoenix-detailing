@@ -20,7 +20,7 @@ typography:
   scale:
     display-mobile-min: "3rem"
     display-mobile-max: "4rem"
-    wordmark: "1.25rem"
+    plate-name: "1.5rem"
     body: "1.0625rem"
     action: "1.0625rem"
     control: "1rem"
@@ -29,7 +29,7 @@ typography:
     stamp: "0.8125rem"
     timestamp: "0.75rem"
     chip: "0.6875rem"
-    city: "0.625rem"
+    tile-caption: "0.6875rem"
   display:
     fontFamily: "Big Shoulders, Arial Narrow, sans-serif"
     fontSize: "clamp(3.5rem, 11vw, 6rem)"
@@ -111,6 +111,11 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.disc}"
     size: "2.5rem"
+  roundel-plate:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.orange}"
+    rounded: "{rounded.disc}"
+    size: "2.5rem"
   plate:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
@@ -151,6 +156,8 @@ Detailing is work done to a car's painted surface, so this system is built from 
 The system is flat by construction. Vinyl has a hard edge, and that edge is the whole design: the shipped page carries no gradient fill, no glass, no glow, no blur, and no drop shadow anywhere. Depth is made by cutting one panel over another on a single diagonal angle and letting the colour beneath show along the cut. The build's one authored motion is the same idea in time: a panel squeegeed on from one edge.
 
 PRODUCT.md records the business's incumbent identity as an orange-to-copper *gradient* on near-black. The build resolves that into flat fields at the sampled orange, with copper surviving only as browser chrome. That divergence is deliberate and the flat resolution is the system: a gradient cannot be cut from vinyl.
+
+The same resolution applies to the logo itself. Scott's artwork, supplied in August 2026, fades orange to red across the bird. The site traces his outlines and drops the fade, so the mark is one flat colour inheriting `currentColor`. It is his shape, in this world's material.
 
 **Key Characteristics:**
 - Three materials only: bodywork black, vinyl orange, livery white.
@@ -205,7 +212,9 @@ The display face loads with `font-display: block` (not `swap`) and `adjustFontFa
 - **Body** (400, 1.0625rem, line-height 1.6, max-width 68ch): all running copy. Paragraphs are capped at the measure by default; narrower caps are set per block (46ch standfirst, 62ch service detail, 42ch caption, 60ch note).
 - **Label / Stamp** (600, 0.8125rem, tracking 0.14em, uppercase, tabular figures, `{colors.fg-3}`): scrutineering captions on the hero credentials strip and small stamped metadata. Related small display roles run 0.625–0.75rem at 0.1–0.22em tracking.
 - **Action label** (700, 1.0625rem, tracking 0.04em, uppercase, display face): all buttons and dock items.
-- **Minor steps.** Chrome and metadata use a closed set of fixed sizes, and nothing outside it: 1.25rem (nav wordmark), 1rem (nav phone link, dock items), 0.9375rem (nav links in the display face; work captions, contact note and reviews note in Chivo), 0.875rem (footer strapline, Chivo), 0.8125rem (the stamp role above), 0.75rem (review timestamps), 0.6875rem (source chips, show-plate descriptor), 0.625rem (the city line under the wordmark). A new small role picks one of these; it does not invent a step between them.
+- **Minor steps.** Chrome and metadata use a closed set of fixed sizes, and nothing outside it: 1.5rem (diptych stage labels), 1rem (nav phone link, dock items), 0.9375rem (nav links in the display face; work captions, contact note and reviews note in Chivo), 0.875rem (footer strapline, Chivo), 0.8125rem (the stamp role above), 0.75rem (review timestamps), 0.6875rem (source chips, show-plate descriptor, grid tile captions). A new small role picks one of these; it does not invent a step between them.
+
+  The nav wordmark is no longer type at all: it is Scott's own lettering, drawn as a mark. See Marks below.
 
 ### Named Rules
 
@@ -280,8 +289,18 @@ Fixed to the bottom below 52rem: a two-up grid on a vinyl-orange ground with 2px
 ### Roundel
 A paint-white disc carrying the phoenix mark, ringed by inset bodywork and paint strokes. It carries the mark only, never a section number, because the sequence is not information anyone needs.
 
+**Plate variant** (`.roundel--plate`): the same disc struck the way Scott's own signage is, bodywork ground with an orange mark and a paint ring. The nav lockup uses it, because his mark is drawn for a black ground and orange on paint measures 3.0:1 against 5.8:1 on bodywork.
+
 ### Plate
-The business's own show plate rebuilt as the contact block: bodywork ground, 2px paint border, 4px radius, orange mark, paint lettering, capped at 26rem.
+The business's own show plate rebuilt as the contact block: bodywork ground, 2px paint border, 4px radius, orange mark, his wordmark in paint white, descriptor beneath, capped at 26rem.
+
+### Marks
+Two, both Scott's own artwork, both traced to outlines by `tools/build-brand.py` and drawn from `components/PhoenixMark.tsx`: the bird, and the PHOENIX wordmark. Flat single colour, `currentColor`, `fill-rule: evenodd`, no gradient. The lockup is the bird and the wordmark and nothing else, at his instruction: the strapline and the handle that appear in his logo file are set in type on the page instead, where they can be read at any size.
+
+The geometry is long, so it ships once as a `<symbol>` sprite in the layout and every mark on the page is a `<use>` of it. A new placement references the sprite; it never pastes the path data again.
+
+### Work grid
+Panels laid on bodywork: no border, no radius, no shadow, the black between them doing the separating. Portrait tiles are 3:4; a wide tile takes two columns at 3:2, which is exactly the height of the portrait tile beside it, so no row runs ragged. Two columns below 64rem, three above, with `grid-auto-flow: dense` so a wide tile never leaves a hole. Each tile carries a stamp caption underneath naming the car, not praising the job.
 
 ### Iconography
 All icons are authored SVG in `components/icons.tsx` on one construction: 24×24 box, 2px stroke, round caps and joins, no fills except where a brand glyph is genuinely solid. They inherit `currentColor`, so a single definition works on bodywork and on vinyl. No icon fonts, no glyph characters, no icon package.
@@ -299,7 +318,7 @@ One authored moment, used in exactly one place: the before/after diptych. A `cli
 - **Do** reveal depth by letting an underlying colour show along a cut, never by adding a shadow.
 - **Do** build repeating content as full-width sponsor bands separated by 1px `{colors.line}` rules, with a small outlined source chip for metadata.
 - **Do** keep the nav opaque and ship the section link row at every width, scrolling it sideways with a trailing mask fade below 52rem.
-- **Do** author icons and marks as flat SVG on the 24×24 / 2px-stroke construction, inheriting `currentColor`.
+- **Do** author icons as flat SVG on the 24×24 / 2px-stroke construction, inheriting `currentColor`. The two phoenix marks are Scott's own outlines and follow the same colour rule from the sprite.
 - **Do** load the display face with `display: block`; the wrong lettering is worse than a brief blank.
 - **Do** set tabular figures on any role that carries a number.
 

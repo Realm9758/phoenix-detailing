@@ -1,5 +1,5 @@
 import { business, nav } from "@/content/site";
-import { PhoenixMark } from "./PhoenixMark";
+import { PhoenixMark, PhoenixWordmark } from "./PhoenixMark";
 import { PhoneIcon } from "./icons";
 import styles from "./Nav.module.css";
 
@@ -7,14 +7,13 @@ export function Nav() {
   return (
     <header className={styles.nav}>
       <div className={`shell ${styles.inner}`}>
-        <a href="#top" className={styles.lockup}>
-          <span className={`roundel ${styles.disc}`}>
+        {/* Scott's own lockup: the bird in a roundel, his wordmark beside it.
+            The link carries the full name for anyone not looking at it. */}
+        <a href="#top" className={styles.lockup} aria-label={`${business.fullName}, top of page`}>
+          <span className={`roundel roundel--plate ${styles.disc}`}>
             <PhoenixMark />
           </span>
-          <span className={styles.word}>
-            Phoenix
-            <span>{business.city}</span>
-          </span>
+          <PhoenixWordmark className={styles.word} />
         </a>
 
         <nav aria-label="Sections" className={styles.sections}>

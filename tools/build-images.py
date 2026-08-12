@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
-"""Turn the raw Instagram screenshots into the site's image assets.
+"""Turn the source photographs into the site's image assets.
 
-The source material is four screenshots of @phoenixdetailingcardiff posts. Each
-one is a photo pane plus Instagram's own chrome, and some of that chrome sits
-*on* the photograph rather than beside it. This script removes all of it, so
-the crops are reproducible rather than hand-made once and forgotten.
+Two sources feed this, and they are handled differently.
 
-Per-image notes:
+`source-images/photos/` holds the photographs Scott supplied on 12 August 2026,
+straight off the phone at 1536x2048 or thereabouts. They need no repair, only
+resizing and encoding, so the CROPS list is short and the notes are about
+framing rather than about damage.
+
+`source-images/instagram/` holds the four screenshots the first build worked
+from, back when Instagram was the only source of imagery. Each one is a photo
+pane plus Instagram's own chrome, and some of that chrome sits *on* the
+photograph rather than beside it. The SCREENSHOTS jobs remove all of it, so
+those crops stay reproducible rather than hand-made once and forgotten.
+
+Per-screenshot notes:
 
   foam / finished   Same Mercedes-AMG, same bay, two frames from one carousel.
                     Shared crop box, so the pair sits in a diptych without one
@@ -19,12 +27,12 @@ Per-image notes:
                     the left carousel arrow, which sits over blank wall and is
                     reconstructed by interpolation.
 
-  ferrari           A video frame. Instagram letterboxes portrait video with a
-                    blurred fill, so the left bar is cropped away, along with
-                    the mute button in the bottom-right.
+Retired: `ferrari`, a video frame from the same set. Scott's own photograph of
+the Ferrari (`ferrari-shield.jpeg`) is sharper, larger and not letterboxed, so
+it replaced it. The screenshot stays in `source-images/instagram/` rather than
+being deleted, because a source that has been superseded is still a source.
 
-Excluded: the BMW-in-the-hexagon-studio frame. The owner confirms that is not
-the current premises.
+Excluded: the BMW-in-the-hexagon-studio screenshot, as before.
 
 Run from the project root:  python3 tools/build-images.py
 """
@@ -42,14 +50,15 @@ except ImportError:
     sys.exit("Pillow is required:  python3 -m pip install Pillow")
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "source-images"
+PHOTOS = ROOT / "source-images" / "photos"
+SHOTS = ROOT / "source-images" / "instagram"
 OUT = ROOT / "images" / "work"
 
 # Shared crop for the AMG pair: x1=820 drops the right carousel arrow,
 # y1=1148 drops the carousel dots.
 AMG_BOX = (0, 2, 820, 1148)
 
-JOBS = [
+SCREENSHOTS = [
     {
         "src": "Screenshot 2026-08-10 at 09.55.29.png",
         "stem": "amg-foam",
@@ -65,15 +74,39 @@ JOBS = [
         # (y 556 and y 638), so the band below stays clear of both.
         "patch": (16, 563, 80, 626),
     },
-    {
-        "src": "Screenshot 2026-08-10 at 09.56.23.png",
-        "stem": "ferrari",
-        "box": (46, 0, 1205, 1448),
-        "patch": None,
-    },
 ]
 
-WEBP_QUALITY = "88"
+# The photographs the site uses. Everything else Scott sent stays in
+# `source-images/photos/` unbuilt: sending fourteen near-identical supercar
+# three-quarters to a page that shows nine would be a slideshow, not a website.
+#
+# `long_edge` is sized to the largest the photograph is ever displayed at,
+# doubled for dense screens. The hero and the contact panel run near half the
+# viewport; the grid tiles never exceed about 420px.
+PHOTOGRAPHS = [
+    # The hero. The one frame that says what the place is: a car worth this
+    # much care, square on, under their own banner.
+    {"src": "mclaren-unit.jpeg", "stem": "mclaren-unit", "long_edge": 1800},
+    # The contact panel. Their unit, from the road, sign legible: this is the
+    # building a customer has to find.
+    {"src": "tvr-outside.jpeg", "stem": "tvr-outside", "long_edge": 1600},
+    # The grid.
+    {"src": "cullinan-outside.jpeg", "stem": "cullinan-outside", "long_edge": 1100},
+    {"src": "bentley-bonnet.jpeg", "stem": "bentley-bonnet", "long_edge": 1100},
+    {"src": "g-class-unit.jpeg", "stem": "g-class-unit", "long_edge": 1100},
+    {"src": "ferrari-shield.jpeg", "stem": "ferrari-shield", "long_edge": 1100},
+    {"src": "bentley-rear-seats.jpeg", "stem": "bentley-seats", "long_edge": 1100},
+    {"src": "beading.jpeg", "stem": "beading", "long_edge": 1100},
+    {"src": "headlights.jpeg", "stem": "headlights", "long_edge": 1100},
+    {"src": "macan-hex.jpeg", "stem": "macan-hex", "long_edge": 1100},
+    {"src": "mclaren-rear.jpeg", "stem": "mclaren-rear", "long_edge": 1100},
+    {"src": "gtr-rear.jpeg", "stem": "gtr-rear", "long_edge": 1100},
+]
+
+WEBP_QUALITY = "82"
+# The two marks and the sign carry hard edges and lettering, so they get a
+# higher quality than the paintwork does.
+WEBP_QUALITY_DETAIL = "88"
 
 
 def heal(im: Image.Image, box: tuple[int, int, int, int], rng: random.Random) -> None:
@@ -108,32 +141,48 @@ def heal(im: Image.Image, box: tuple[int, int, int, int], rng: random.Random) ->
             )
 
 
+def encode(im: Image.Image, stem: str, quality: str) -> None:
+    png = OUT / f"{stem}.png"
+    webp = OUT / f"{stem}.webp"
+    im.save(png)
+    subprocess.run(
+        ["cwebp", "-q", quality, "-m", "6", "-quiet", str(png), "-o", str(webp)],
+        check=True,
+    )
+    png.unlink()
+    kb = webp.stat().st_size / 1024
+    print(f"{stem:18s} {im.size[0]}x{im.size[1]}  {kb:6.1f} KB  {webp.name}")
+
+
 def main() -> None:
-    if not SRC.is_dir():
-        sys.exit(f"Source screenshots not found at {SRC}")
+    for folder in (PHOTOS, SHOTS):
+        if not folder.is_dir():
+            sys.exit(f"Sources not found at {folder}")
     OUT.mkdir(parents=True, exist_ok=True)
     rng = random.Random(20260810)
 
-    for job in JOBS:
-        src = SRC / job["src"]
+    for job in SCREENSHOTS:
+        src = SHOTS / job["src"]
         if not src.is_file():
             sys.exit(f"Missing source screenshot: {src}")
-
         im = Image.open(src).convert("RGB").crop(job["box"])
         if job["patch"]:
             heal(im, job["patch"], rng)
+        encode(im, job["stem"], WEBP_QUALITY_DETAIL)
 
-        png = OUT / f"{job['stem']}.png"
-        webp = OUT / f"{job['stem']}.webp"
-        im.save(png)
-        subprocess.run(
-            ["cwebp", "-q", WEBP_QUALITY, "-m", "6", "-quiet", str(png), "-o", str(webp)],
-            check=True,
-        )
-        png.unlink()
-
-        kb = webp.stat().st_size / 1024
-        print(f"{job['stem']:14s} {im.size[0]}x{im.size[1]}  {kb:6.1f} KB  {webp.name}")
+    for job in PHOTOGRAPHS:
+        src = PHOTOS / job["src"]
+        if not src.is_file():
+            sys.exit(f"Missing source photograph: {src}")
+        im = Image.open(src).convert("RGB")
+        long_edge = job["long_edge"]
+        if max(im.size) > long_edge:
+            scale = long_edge / max(im.size)
+            im = im.resize(
+                (round(im.width * scale), round(im.height * scale)),
+                Image.LANCZOS,
+            )
+        encode(im, job["stem"], WEBP_QUALITY)
 
 
 if __name__ == "__main__":

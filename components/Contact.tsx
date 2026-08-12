@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { business, contact, whatsappHref } from "@/content/site";
 import { photos } from "@/images";
-import { PhoenixMark } from "./PhoenixMark";
+import { PhoenixMark, PhoenixWordmark } from "./PhoenixMark";
 import { InstagramIcon, PhoneIcon, WhatsAppIcon } from "./icons";
 import styles from "./Contact.module.css";
 
@@ -49,10 +49,12 @@ export function Contact() {
 
           <p className={styles.note}>{contact.priceNote}</p>
 
+          {/* His own show plate, rebuilt: the mark, the wordmark, the line off
+              the plate itself. The same two marks that sit in the nav. */}
           <div className={`plate ${styles.plateBlock}`}>
-            <PhoenixMark />
+            <PhoenixMark className={styles.plateMark} />
             <span className={styles.plateLines}>
-              <span className={styles.plateName}>Phoenix</span>
+              <PhoenixWordmark className={styles.plateWord} title={business.name} />
               <span className={styles.plateSub}>{business.descriptor}</span>
             </span>
           </div>
@@ -60,7 +62,7 @@ export function Contact() {
 
         <div className={styles.shot}>
           <Image
-            src={photos.ferrari}
+            src={photos.tvrOutside}
             alt={contact.imageAlt}
             sizes="(min-width: 62rem) 46vw, 100vw"
             placeholder="blur"

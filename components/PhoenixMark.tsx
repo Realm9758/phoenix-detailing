@@ -1,19 +1,26 @@
 /**
- * The phoenix mark, drawn as cut vinyl.
+ * The Phoenix marks: Scott's own logo, as vinyl.
  *
- * IMPORTANT: this is not Scott's original artwork. The only copies of the real
- * logo available were photographs of the workshop banner and a show plate:
- * too small, too angled and too blown-out by the strip lights to trace. So the
- * mark below is authored to match what those photographs show: a symmetrical
- * phoenix, wings swept up and out, head turned left, drawn in flat angular
- * shapes that could genuinely be cut from vinyl.
+ * Scott supplied the artwork on 12 August 2026 as two JPEGs. The outlines in
+ * `phoenix-paths.ts` are traced from those files by `tools/build-brand.py`, so
+ * the shapes here are his and nobody else's. Two things were deliberately left
+ * behind in the trace:
  *
- * It is listed in `pending` in content/site.ts. When Scott supplies the real
- * logo file, replace this component's paths and nothing else changes.
+ *   - the artwork's orange gradient, because this page is cut vinyl and vinyl
+ *     does not fade from one colour to another. The mark is one flat colour
+ *     and inherits `currentColor`, so it sits on bodywork, on a roundel or on
+ *     an orange field without a second variant;
+ *   - everything under the wordmark. Scott asked for the phoenix and the bird,
+ *     so the strapline, the social icons and the handle are not traced. What
+ *     they say still appears on the page, set in type, where it can be read at
+ *     any size and by a screen reader.
  *
- * Single-colour and inherits `currentColor`, so it sits on bodywork or on an
- * orange field without a second variant.
+ * The path data is long, so it is defined once in `PhoenixSprite` (rendered
+ * once, in the layout) and referenced everywhere else. Three marks on the page
+ * cost one copy of the geometry, not three.
  */
+
+import { bird, word } from "./phoenix-paths";
 
 type Props = {
   className?: string;
@@ -21,11 +28,29 @@ type Props = {
   title?: string;
 };
 
-export function PhoenixMark({ className, title }: Props) {
+/** The geometry, defined once per document. Renders nothing visible. */
+export function PhoenixSprite() {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
+    >
+      <symbol id="phoenix-bird" viewBox={bird.viewBox}>
+        <path fillRule="evenodd" d={bird.d} />
+      </symbol>
+      <symbol id="phoenix-word" viewBox={word.viewBox}>
+        <path fillRule="evenodd" d={word.d} />
+      </symbol>
+    </svg>
+  );
+}
+
+function Mark({ id, viewBox, className, title }: Props & { id: string; viewBox: string }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 128 76"
+      viewBox={viewBox}
       fill="currentColor"
       role={title ? "img" : "presentation"}
       aria-hidden={title ? undefined : true}
@@ -33,23 +58,17 @@ export function PhoenixMark({ className, title }: Props) {
       focusable="false"
     >
       {title ? <title>{title}</title> : null}
-
-      {/* Wings. Two heavy swept blades a side rather than a fringe of thin
-          ones. At 24px in the nav roundel a fringe collapses into a smudge,
-          and vinyl this fine could not be weeded off the backing anyway. */}
-      <path d="M61 31 L3 2 L23 30 L5 31 L34 48 L61 46 Z" />
-      <path d="M67 31 L125 2 L105 30 L123 31 L94 48 L67 46 Z" />
-
-      {/* Body. Carries real mass: a thin spindle between two wings reads as a
-          dragonfly, not a bird. */}
-      <path d="M64 17 L73 30 L70 49 L64 57 L58 49 L55 30 Z" />
-
-      {/* Tail, fanned into three points rather than closing to a needle */}
-      <path d="M58 47 L47 73 L61 55 L64 76 L67 55 L81 73 L70 47 Z" />
-
-      {/* Head, turned left, and the beak */}
-      <path d="M64 0 L73 12 L64 25 L55 12 Z" />
-      <path d="M56 8 L38 13 L56 19 Z" />
+      <use href={`#${id}`} />
     </svg>
   );
+}
+
+/** The bird alone. */
+export function PhoenixMark(props: Props) {
+  return <Mark id="phoenix-bird" viewBox={bird.viewBox} {...props} />;
+}
+
+/** The PHOENIX wordmark alone. */
+export function PhoenixWordmark(props: Props) {
+  return <Mark id="phoenix-word" viewBox={word.viewBox} {...props} />;
 }

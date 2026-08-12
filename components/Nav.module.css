@@ -17,7 +17,9 @@
   min-height: 4.5rem;
 }
 
-/* Logo lockup: the mark in a race roundel, wordmark beside it. */
+/* Logo lockup: Scott's bird in a race roundel, his wordmark beside it. The
+   roundel takes the plate treatment (black ground, orange mark) because that
+   is how the mark reads on his own sign and show plates. */
 .lockup {
   display: inline-flex;
   align-items: center;
@@ -27,28 +29,17 @@
 
 .disc {
   width: 2.5rem;
-  color: var(--ink);
 }
 
 .disc svg {
   width: 1.5rem;
 }
 
+/* Sized off the cap height of the nav links rather than off the disc, so the
+   wordmark sits in the bar as lettering and not as a picture of lettering. */
 .word {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 1.25rem;
-  line-height: 0.9;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-}
-
-.word span {
-  display: block;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  color: var(--orange);
+  width: 7.25rem;
+  color: var(--fg);
 }
 
 /* On a phone this is the only way to reach a section, so it ships at every

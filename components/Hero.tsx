@@ -49,7 +49,7 @@ export function Hero() {
 
       <div className={styles.shot}>
         <Image
-          src={photos.amgFinished}
+          src={photos.mclarenUnit}
           alt={hero.imageAlt}
           priority
           sizes="(min-width: 60rem) 47vw, 100vw"

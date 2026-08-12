@@ -90,7 +90,7 @@ export const hero = {
   primary: "Message Scott on WhatsApp",
   secondary: `Call ${business.phoneDisplay}`,
   imageAlt:
-    "A grey Mercedes-AMG E-Class, freshly detailed and gleaming under the strip lights of the Phoenix Detailing unit in Cardiff, with the Phoenix banner on the wall behind it",
+    "A grey McLaren with both doors raised, standing square on under the strip lights of the Phoenix Detailing unit, the Phoenix banner on the wall behind it",
 } as const;
 
 /**
@@ -156,22 +156,94 @@ export const services = {
 } as const;
 
 /**
- * The two frames below are the same Mercedes-AMG in the same bay, from one
- * Instagram carousel. They are deliberately NOT presented as a drag-slider
+ * The work section: one job shown in two frames, then the cars themselves.
+ *
+ * `process` uses the two frames of the same Mercedes-AMG in the same bay, from
+ * one Instagram carousel. They are deliberately NOT presented as a drag-slider
  * before/after: the camera moved between the two shots, so they do not
  * register, and pretending otherwise would look like a trick. Two panels, one
  * cut line.
+ *
+ * `gallery` is Scott's own photography, supplied 12 August 2026. Each caption
+ * says only what is in the frame. Where a badge is not legible the marque is
+ * named and the model is not, because a caption is a claim like any other.
+ * Eleven of the pictures he sent are not here: near-identical three-quarter
+ * views of the same cars, which would make a slideshow rather than a page.
  */
 export const work = {
-  heading: "Snow foam to finished",
-  body: "The same car, the same bay, one job. This is what the middle of the work looks like, and what the end of it looks like.",
-  before: {
-    label: "In",
-    caption: "Snow foam on, lifting the grit before anything touches the paint.",
+  heading: "The work",
+  body: "Every photograph below is Scott's own, taken in the unit. None of it is stock, and none of it is a car he did not do himself.",
+
+  process: {
+    heading: "Snow foam to finished",
+    body: "The same car, the same bay, one job. This is what the middle of the work looks like, and what the end of it looks like.",
+    before: {
+      label: "In",
+      caption: "Snow foam on, lifting the grit before anything touches the paint.",
+    },
+    after: {
+      label: "Out",
+      caption: "Paint corrected, glass clear, trim dressed. Ready to collect.",
+    },
   },
-  after: {
-    label: "Out",
-    caption: "Paint corrected, glass clear, trim dressed. Ready to collect.",
+
+  gallery: {
+    heading: "Through the unit",
+    body: "Cars booked in, worked on and photographed on the way out.",
+    items: [
+      {
+        key: "cullinanOutside",
+        caption: "Rolls-Royce, on the forecourt",
+        alt: "A black Rolls-Royce Cullinan parked outside the Phoenix Detailing unit in the sun, the Phoenix sign on the wall above it and a Phoenix show plate on its bumper",
+      },
+      {
+        key: "bentleyBonnet",
+        caption: "A Bentley bonnet, holding the ceiling",
+        alt: "The bonnet of a dark grey Bentley, so clean that the hexagonal ceiling lights above it come back off the paint in a sharp unbroken pattern, the winged B badge in the foreground",
+      },
+      {
+        key: "gClassUnit",
+        caption: "Mercedes G-Class, inside",
+        alt: "A black Mercedes G-Class inside the unit under the strip lights, the Phoenix banner on the wall behind it and a Phoenix show plate on its bumper",
+      },
+      {
+        key: "headlights",
+        caption: "One headlight brought back, one as it arrived",
+        wide: true,
+        alt: "Two photographs of a silver car's headlights side by side: one clear enough to see the reflector inside, the other clouded and yellowed",
+      },
+      {
+        key: "ferrariShield",
+        caption: "Ferrari, wing and shield",
+        alt: "The front wing of a red Ferrari with the Scuderia shield on it, the paint reflecting a long unbroken line of light",
+      },
+      {
+        key: "bentleySeats",
+        caption: "Quilted leather, cleaned",
+        alt: "The rear cabin of a Bentley, quilted tan leather seats and burr walnut trim, cleaned and photographed with the door open",
+      },
+      {
+        key: "beading",
+        caption: "Water standing up on a coated panel",
+        wide: true,
+        alt: "Water in tight round beads standing on a silver panel rather than running off it",
+      },
+      {
+        key: "macanHex",
+        caption: "Porsche Macan, under the lights",
+        alt: "A black Porsche Macan under a ceiling of hexagonal lights, the pattern reflected the length of its bonnet, a Phoenix show plate on the front",
+      },
+      {
+        key: "mclarenRear",
+        caption: "McLaren, from behind",
+        alt: "The rear of a black McLaren from above, the hexagonal ceiling lights reflected across the engine cover, a Phoenix show plate below the tail lights",
+      },
+      {
+        key: "gtrRear",
+        caption: "Nissan GT-R, plate still on",
+        alt: "The rear of a grey Nissan GT-R parked outside the unit, a Phoenix show plate in place of the number plate and the Phoenix sign on the building behind",
+      },
+    ],
   },
 } as const;
 
@@ -232,7 +304,7 @@ export const contact = {
   heading: "Bring it to the unit",
   body: "Cars are booked in and collected from the unit in Cardiff. Message Scott with what you drive and what you want doing, and he'll come back with a price.",
   imageAlt:
-    "A red Ferrari 360 parked in the Phoenix Detailing unit in Cardiff, a Phoenix show plate on its front bumper, white panelled walls and strip lighting overhead",
+    "The Phoenix Detailing unit from the road: a grey building with the Phoenix sign above the door, one bay open with its hexagon lights on, and a colour-shifting green TVR parked outside",
   // No prices are published anywhere in the source material, so the site asks
   // for an enquiry rather than showing a figure or a "from" price.
   priceNote: "No fixed price list. Every car is quoted on the car.",
@@ -266,5 +338,4 @@ export const pending = [
   { field: "business.facebook", what: "The Facebook page URL. The icon is on your banner but the link was never captured." },
   { field: "business.rating / business.reviewCount", what: "Your Google star rating and total review count. Until these are supplied the site makes no numeric claim about either." },
   { field: "business.siteUrl", what: "The live domain, once there is one. Unlocks the canonical URL, the Open Graph tags and the `url` in the search-engine schema. All three are deliberately absent until then rather than pointing at a guess." },
-  { field: "logo", what: "The Phoenix logo as an SVG or high-resolution PNG. The mark currently on the site is drawn to match, because the only copies available were photographs of the workshop banner." },
 ] as const;

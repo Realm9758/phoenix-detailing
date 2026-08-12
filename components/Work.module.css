@@ -9,6 +9,22 @@
   max-width: 54rem;
 }
 
+/* Two blocks under one heading: the job in two frames, then the cars. */
+.block + .block {
+  padding-top: var(--s7);
+}
+
+.subhead {
+  display: grid;
+  gap: var(--s1);
+  padding-bottom: var(--s4);
+  max-width: 54rem;
+}
+
+.subhead p {
+  color: var(--fg-2);
+}
+
 /* The diptych. Two panels, one cut line.
    Deliberately NOT a drag-slider: the two frames are not camera-registered,
    so sliding one over the other would make the car jump. Side by side is the
@@ -65,5 +81,53 @@
 @media (min-width: 48rem) {
   .pair {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* The grid ------------------------------------------------------------------
+   Panels laid on bodywork, not cards: no borders, no rounding, no shadow. The
+   seams are the black showing between them.
+
+   Portrait tiles are 3:4 and wide ones take two columns at 3:2, which is the
+   same height as the portrait tile beside them (two columns and a gap, times
+   two thirds). One grid, two panel shapes, no ragged row. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: dense;
+  gap: var(--s4) var(--s2);
+  list-style: none;
+  padding: 0;
+}
+
+.tile img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.wide {
+  grid-column: span 2;
+}
+
+.wide img {
+  aspect-ratio: 3 / 2;
+}
+
+/* Stamped under the panel like a scrutineering label: what the car is, not a
+   sentence about how good the job was. */
+.grid figcaption {
+  padding-top: 0.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--fg-3);
+  text-wrap: balance;
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s5) var(--s3);
   }
 }

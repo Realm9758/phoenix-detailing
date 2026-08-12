@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Big_Shoulders, Chivo } from "next/font/google";
 import { business, services } from "@/content/site";
+import { PhoenixSprite } from "@/components/PhoenixMark";
 import "./globals.css";
 
 /**
@@ -123,6 +124,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Scott's logo geometry, defined once and referenced by every mark. */}
+        <PhoenixSprite />
         {children}
       </body>
     </html>

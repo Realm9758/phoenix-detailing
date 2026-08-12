@@ -11,7 +11,12 @@ npm install
 npm run dev      # http://localhost:3000
 npm run build    # production build
 npm run images   # regenerate the photographs from source-images/
+npm run brand    # re-trace the logo from source-images/brand/
 ```
+
+`npm run images` needs Pillow and `cwebp`. `npm run brand` also needs `potracer`
+(`python3 -m pip install potracer`). Neither is needed to run or deploy the
+site: both write files that are committed.
 
 ## Where things live
 
@@ -22,8 +27,11 @@ npm run images   # regenerate the photographs from source-images/
 | `app/page.tsx` | Composition only. No copy, no styling decisions. |
 | `app/globals.css` | Design tokens and the livery primitives. |
 | `components/` | One component per section, each with its own CSS module. |
-| `tools/build-images.py` | Crops Instagram's chrome off the source screenshots. |
-| `source-images/` | The original screenshots, kept so the crops stay reproducible. |
+| `tools/build-images.py` | Resizes Scott's photographs and crops Instagram's chrome off the old screenshots. |
+| `tools/build-brand.py` | Traces Scott's logo files into the outlines the site draws. |
+| `source-images/photos/` | Scott's own photographs, as supplied. |
+| `source-images/brand/` | Scott's logo files, as supplied. |
+| `source-images/instagram/` | The four screenshots the first build worked from. |
 | `PRODUCT.md` | Durable product truth: users, positioning, services and their sources. |
 
 ## The one rule
@@ -53,20 +61,26 @@ Each of these is already wired up. Fill in the matching field in `content/site.t
 | Email address | `business.email` | A contact row |
 | Facebook page URL | `business.facebook` | The Facebook link in the footer (the icon is on your banner; the URL was never captured) |
 | Google rating and review count | `business.rating`, `business.reviewCount` | Until supplied, the site makes no numeric claim about either |
-| The logo as SVG or high-res PNG | `components/PhoenixMark.tsx` | Replaces the drawn stand-in. See below |
 | The live domain | `business.siteUrl` | The canonical URL, the Open Graph tags and the `url` in the search schema. All three are deliberately absent until then rather than pointing at a domain nobody registered |
 
 ## About the logo
 
-`components/PhoenixMark.tsx` is **not** Scott's original artwork. The only copies available were photographs of the workshop banner and a show plate: too small, too angled and too washed out by the strip lights to trace. So the mark is drawn to match what those photographs show, in flat angular shapes that could genuinely be cut from vinyl.
+Scott supplied the artwork on 12 August 2026, and it is now the mark the site draws. `tools/build-brand.py` thresholds his two JPEGs and traces them, writing the outlines to `components/phoenix-paths.ts`; `components/PhoenixMark.tsx` draws them. Re-run `npm run brand` if he ever sends a better file.
 
-Replace the paths in that one component when the real file turns up. Nothing else changes.
+Two decisions were taken in the trace, both worth knowing before anyone "fixes" them:
+
+- **The gradient is gone.** His artwork fades orange to red. This page is cut vinyl, and vinyl does not fade, so the mark is one flat colour and inherits `currentColor`. That is also why it can sit on a black roundel, on bodywork and on an orange field without a second file.
+- **Only the phoenix and the bird.** Scott asked for the lockup trimmed to those two, so the strapline, the social icons and the handle in his file are not traced. What they say still appears on the page, set in type, where it can be read at any size and by a screen reader.
 
 ## Photographs
 
-Three, all Phoenix's own, all taken in the current unit and published on their Instagram. There is no stock photography here and there must never be any. The work is the proof.
+All Phoenix's own. There is no stock photography here and there must never be any: the work is the proof.
 
-A fourth screenshot (a BMW in a hexagon-lit studio) is in `source-images/` but deliberately unused: it is not the current premises, and showing it would misrepresent where a customer's car actually goes.
+Fourteen images are built: twelve of the twenty-six photographs Scott supplied on 12 August 2026, plus the two Instagram frames below. The fourteen that are not used are near-identical three-quarter views of cars already on the page. Which ones get built is the `PHOTOGRAPHS` list in `tools/build-images.py`, so swapping one in is a one-line change plus its caption and alt text in `content/site.ts`.
+
+Two frames from an old Instagram carousel are still used, for the snow-foam-to-finished pair: they are the only record of a car mid-job rather than finished. The Ferrari screenshot from that same set has been retired, because Scott's own photograph of a Ferrari is sharper and not letterboxed.
+
+One question is open. A BMW screenshot in `source-images/instagram/` was left unused in the first build because Scott said the hexagon-lit studio in it was not the current premises. Several of the photographs he sent in August show a hexagon-lit bay, and the shots of the unit from the road show hexagon lights through the open door. So either the unit has been fitted out since, or two spaces are in play. Nothing on the page claims which room any photograph was taken in, except where his own sign or banner is in the frame. Confirm it with him before writing anything that does.
 
 ## Design
 
