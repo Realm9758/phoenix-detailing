@@ -76,9 +76,16 @@ Two decisions were taken in the trace, both worth knowing before anyone "fixes" 
 
 All Phoenix's own. There is no stock photography here and there must never be any: the work is the proof.
 
-Fourteen images are built: twelve of the twenty-six photographs Scott supplied on 12 August 2026, plus the two Instagram frames below. The fourteen that are not used are near-identical three-quarter views of cars already on the page. Which ones get built is the `PHOTOGRAPHS` list in `tools/build-images.py`, so swapping one in is a one-line change plus its caption and alt text in `content/site.ts`.
+Thirteen images are built: eleven of the twenty-six photographs Scott supplied on 12 August 2026, plus the two Instagram frames below. Which ones get built is the `PHOTOGRAPHS` list in `tools/build-images.py`, so swapping one in is a one-line change plus its caption and alt text in `content/site.ts`.
 
-Two frames from an old Instagram carousel are still used, for the snow-foam-to-finished pair: they are the only record of a car mid-job rather than finished. The Ferrari screenshot from that same set has been retired, because Scott's own photograph of a Ferrari is sharper and not letterboxed.
+**Two rules decide what goes on the page, and both were learned by getting them wrong first.**
+
+1. **Every gallery photograph is 3:4**, which is what Scott's phone shoots, and the grid tile is 3:4 too, so nothing is cropped to fit. A frame in any other shape loses a quarter of itself to `object-fit: cover`. That is how a photograph of two headlights ended up with the headlights cut off at the edges. If a frame is not 3:4 it gets a place of its own or it does not go on.
+2. **Every photograph is built at twice the size it is displayed at**, because most people reading this page are on a 2x screen and a 1x image reads as soft. The check is in `tools/build-images.py`: hero and contact run near half the viewport, grid tiles are capped near 420px by the 88rem shell.
+
+Two of Scott's pictures are deliberately left out on judgement rather than on those rules: a close-up of water beading on a panel (a good photograph of water, but a page of cars is not where it belongs) and a headlight before/after, which is a two-up collage at 841px, neither 3:4 nor big enough to show at a size worth showing.
+
+Two frames from an old Instagram carousel are still used, for the snow-foam-to-finished pair: they are the only record of a car mid-job rather than finished. At 820px they are the smallest images on the site, which is why that block is capped at two grid columns instead of running the full width, and why the cap has a comment on it in `Work.module.css`. The Ferrari screenshot from that same set has been retired, because Scott's own photograph of a Ferrari is sharper and not letterboxed.
 
 One question is open. A BMW screenshot in `source-images/instagram/` was left unused in the first build because Scott said the hexagon-lit studio in it was not the current premises. Several of the photographs he sent in August show a hexagon-lit bay, and the shots of the unit from the road show hexagon lights through the open door. So either the unit has been fitted out since, or two spaces are in play. Nothing on the page claims which room any photograph was taken in, except where his own sign or banner is in the frame. Confirm it with him before writing anything that does.
 

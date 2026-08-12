@@ -300,7 +300,13 @@ Two, both Scott's own artwork, both traced to outlines by `tools/build-brand.py`
 The geometry is long, so it ships once as a `<symbol>` sprite in the layout and every mark on the page is a `<use>` of it. A new placement references the sprite; it never pastes the path data again.
 
 ### Work grid
-Panels laid on bodywork: no border, no radius, no shadow, the black between them doing the separating. Portrait tiles are 3:4; a wide tile takes two columns at 3:2, which is exactly the height of the portrait tile beside it, so no row runs ragged. Two columns below 64rem, three above, with `grid-auto-flow: dense` so a wide tile never leaves a hole. Each tile carries a stamp caption underneath naming the car, not praising the job.
+Panels laid on bodywork: no border, no radius, no shadow, the black between them doing the separating. Two columns below 64rem, three above. Each tile carries a stamp caption underneath naming the car, not praising the job.
+
+**One tile shape, 3:4, and it is the shape the photographs already are.** `object-fit: cover` is on the tiles to guarantee the grid can never break, not to crop: with the ratios matched it removes nothing. An earlier pass mixed 3:2 tiles spanning two columns into the same grid, which looked tidy and quietly ate a quarter of every frame that filled one. A photograph in another shape gets a place of its own or does not go in the grid.
+
+The snow-foam diptych above the grid is capped to exactly two of the grid's three columns (`calc((100% - 2 * var(--s3)) / 3 * 2 + var(--s3))`), so the two blocks share one column rhythm and their edges line up down the page. That cap also keeps those two low-resolution frames from being asked to fill 644px each.
+
+**The 2x Rule.** Every photograph ships at twice the largest size it is displayed at. `sizes` describes the *tile*, not the viewport: the grid is two columns on a phone, so its `sizes` says 46vw and not 92vw. Getting that wrong does not show up as a layout bug, it shows up as a phone downloading an 828px file for a 179px tile.
 
 ### Iconography
 All icons are authored SVG in `components/icons.tsx` on one construction: 24×24 box, 2px stroke, round caps and joins, no fills except where a brand glyph is genuinely solid. They inherit `currentColor`, so a single definition works on bodywork and on vinyl. No icon fonts, no glyph characters, no icon package.
@@ -309,6 +315,8 @@ All icons are authored SVG in `components/icons.tsx` on one construction: 24×24
 One authored moment, used in exactly one place: the before/after diptych. A `clip-path: inset(0 100% 0 0)` wipe over 900ms on `cubic-bezier(0.16, 1, 0.3, 1)` , vinyl squeegeed on from one edge, with children pressing up 0.6rem in 620ms at 70ms stagger. The class is attached client-side after mount, so content is fully visible without JavaScript, and the whole effect is scoped behind `prefers-reduced-motion: no-preference`. It was briefly applied to every section and every service row, which turned one authored moment into eleven identical entrances; that is the failure mode this rule exists to prevent.
 
 **The One Moment Rule.** This site has one entrance animation and it belongs to one element. State transitions (160–220ms) are the only other motion. A new surface does not get its own reveal.
+
+**The Observe-The-Unclipped-Element Rule.** An `IntersectionObserver` computes intersection *after* clipping, so an element wearing the wipe's pre-state (`clip-path: inset(0 100% 0 0)`) reports `isIntersecting: false` and a ratio of 0 no matter where it sits on screen. Observing the clipped element is a deadlock: the observer that would un-hide it can never fire, and the panel stays blank forever. It shipped that way once and the diptych was an empty hole in the page. The observed element is therefore the outer wrapper, which is never clipped, and the wipe goes on the panel inside it. Any future reveal follows the same shape, and gets checked by scrolling to it in a browser rather than by reading the code.
 
 ## Do's and Don'ts
 

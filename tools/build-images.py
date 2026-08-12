@@ -109,7 +109,10 @@ PHOTOGRAPHS = [
     {"src": "mclaren-hex.jpeg", "stem": "mclaren-hex", "long_edge": 1400},
     {"src": "ferrari-shield.jpeg", "stem": "ferrari-shield", "long_edge": 1400},
     {"src": "g-class-unit.jpeg", "stem": "g-class-unit", "long_edge": 1400},
-    {"src": "bentley-rear-seats.jpeg", "stem": "bentley-seats", "long_edge": 1400},
+    # The front cabin, not the rear seats: the rear-seat frame has a headrest
+    # crowding the edge and a yellow field through the glass, and this one
+    # shows the dash, the wood and the leather in one go.
+    {"src": "bentley-cabin.jpeg", "stem": "bentley-cabin", "long_edge": 1400},
     {"src": "macan-hex.jpeg", "stem": "macan-hex", "long_edge": 1400},
     {"src": "bentley-bonnet.jpeg", "stem": "bentley-bonnet", "long_edge": 1400},
     {"src": "gtr-rear.jpeg", "stem": "gtr-rear", "long_edge": 1400},

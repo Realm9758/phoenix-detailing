@@ -27,7 +27,7 @@ import cullinanOutside from "./work/cullinan-outside.webp";
 import mclarenHex from "./work/mclaren-hex.webp";
 import ferrariShield from "./work/ferrari-shield.webp";
 import gClassUnit from "./work/g-class-unit.webp";
-import bentleySeats from "./work/bentley-seats.webp";
+import bentleyCabin from "./work/bentley-cabin.webp";
 import macanHex from "./work/macan-hex.webp";
 import bentleyBonnet from "./work/bentley-bonnet.webp";
 import gtrRear from "./work/gtr-rear.webp";
@@ -56,8 +56,8 @@ export const photos = {
   ferrariShield,
   /** Mercedes G-Class inside, banner behind it. */
   gClassUnit,
-  /** Quilted leather in the back of a Bentley. */
-  bentleySeats,
+  /** A Bentley's front cabin: dash, burr walnut, quilted leather. */
+  bentleyCabin,
   /** Porsche Macan under the hexagon lights. */
   macanHex,
   /** A Bentley bonnet returning the ceiling lights. */
