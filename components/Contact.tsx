@@ -50,7 +50,8 @@ export function Contact() {
           <p className={styles.note}>{contact.priceNote}</p>
 
           {/* His own show plate, rebuilt: the mark, the wordmark, the line off
-              the plate itself. The same two marks that sit in the nav. */}
+              the plate itself. Flat vinyl here, where the nav carries the
+              artwork as he draws it. */}
           <div className={`plate ${styles.plateBlock}`}>
             <PhoenixMark className={styles.plateMark} />
             <span className={styles.plateLines}>

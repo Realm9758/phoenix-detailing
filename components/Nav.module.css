@@ -9,37 +9,29 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* The lockup is stacked, so the bar is deeper than a wordmark-only bar would
+   need to be: it is sized to give the artwork room rather than to crop it. */
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--s4);
-  min-height: 4.5rem;
+  min-height: 5.5rem;
 }
 
-/* Logo lockup: Scott's bird in a race roundel, his wordmark beside it. The
-   roundel takes the plate treatment (black ground, orange mark) because that
-   is how the mark reads on his own sign and show plates. */
+/* Logo lockup: Scott's stacked artwork, ground keyed out so it sits straight
+   on the bar with no black tile of its own. */
 .lockup {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
   flex-shrink: 0;
 }
 
-.disc {
-  width: 2.5rem;
-}
-
-.disc svg {
-  width: 1.5rem;
-}
-
-/* Sized off the cap height of the nav links rather than off the disc, so the
-   wordmark sits in the bar as lettering and not as a picture of lettering. */
-.word {
-  width: 7.25rem;
-  color: var(--fg);
+/* Height-led, because the bar's constraint is vertical and the artwork's
+   proportion should follow from that rather than from a chosen width. */
+.logo {
+  width: auto;
+  height: 3.5rem;
 }
 
 /* On a phone this is the only way to reach a section, so it ships at every
@@ -109,6 +101,10 @@
 }
 
 @media (min-width: 52rem) {
+  .logo {
+    height: 4rem;
+  }
+
   .links {
     gap: var(--s4);
     overflow-x: visible;

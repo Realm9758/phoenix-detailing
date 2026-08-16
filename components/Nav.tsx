@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 import { business, nav } from "@/content/site";
-import { PhoenixMark, PhoenixWordmark } from "./PhoenixMark";
+import { brand } from "@/images";
 import { PhoneIcon } from "./icons";
 import styles from "./Nav.module.css";
 
@@ -7,13 +9,11 @@ export function Nav() {
   return (
     <header className={styles.nav}>
       <div className={`shell ${styles.inner}`}>
-        {/* Scott's own lockup: the bird in a roundel, his wordmark beside it.
-            The link carries the full name for anyone not looking at it. */}
+        {/* Scott's own lockup as he draws it: bird, wordmark, strapline. The
+            link carries the full name for anyone not looking at it, so the
+            image itself is decorative and stays out of the reading order. */}
         <a href="#top" className={styles.lockup} aria-label={`${business.fullName}, top of page`}>
-          <span className={`roundel roundel--plate ${styles.disc}`}>
-            <PhoenixMark />
-          </span>
-          <PhoenixWordmark className={styles.word} />
+          <Image src={brand.logoLockup} alt="" className={styles.logo} priority />
         </a>
 
         <nav aria-label="Sections" className={styles.sections}>

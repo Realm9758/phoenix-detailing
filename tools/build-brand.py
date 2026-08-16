@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turn Scott's supplied logo files into the site's vector brand assets.
+"""Turn Scott's supplied logo files into the site's brand assets.
 
 Scott supplied two rasters on 12 August 2026: `logo.jpeg`, the full stacked
 lockup (bird, PHOENIX wordmark, "DETAILING \\ VALETING", social icons, handle),
@@ -19,9 +19,16 @@ gives all three at once. The feather separations survive the trace because
 they are gaps in the artwork, not lighter shades of it: the black ground shows
 through between the blades, so the threshold cuts them open.
 
-The user's instruction for this pass was "just keep the phoenix and the bird",
-so the strapline, the social icons and the handle are cropped away and never
-traced.
+The traced marks keep the strapline out: "just keep the phoenix and the bird"
+was the instruction for that pass, and the social icons and the handle are
+cropped away and never traced.
+
+This script also cuts one raster. On 16 August 2026 the user asked for the
+nav's top-left logo to be Scott's stacked lockup as drawn, strapline included,
+with everything below "DETAILING \\ VALETING" cropped off. The artwork is
+bright-on-black, so its own luminance is its alpha: keying the ground out that
+way gives a mark that sits on any surface with no black tile behind it and no
+halo, which a straight JPEG crop cannot do.
 
 Requires the pure-python potrace port:  python3 -m pip install potracer
 
@@ -47,13 +54,14 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "source-images" / "brand"
 OUT = ROOT / "components"
+IMAGES = ROOT / "images" / "brand"
 
 # Row bands measured off the sources, so the crops are reproducible rather
 # than eyeballed once. `logo-lockup.jpeg` stacks its parts:
 #     40..671   bird
 #     728..834  PHOENIX
-#     891..918  DETAILING \ VALETING   <- cropped away
-#     1029..    social icons, handle   <- cropped away
+#     891..918  DETAILING \ VALETING   <- kept by the raster, not traced
+#     1029..    social icons, handle   <- cropped away everywhere
 JOBS = [
     {
         "name": "bird",
@@ -75,6 +83,14 @@ JOBS = [
         "viewbox_pad": 0,
     },
 ]
+
+# The raster lockup: the same three bands as above, trimmed to the ink on all
+# four sides so the CSS sizes the mark itself and not the artwork's margins.
+LOCKUP_BOX = (31, 40, 1099, 919)
+# Below this the source is JPEG noise in the black ground, not artwork.
+LOCKUP_FLOOR = 18
+# Wide enough for a 3x nav and for anywhere else the lockup might land later.
+LOCKUP_WIDTH = 720
 
 # potrace settings. `alphamax` low keeps the corners the artwork actually has
 # (the wordmark's notch cuts, the tail points) from being rounded into blobs.
@@ -125,6 +141,32 @@ def trace(im: Image.Image, threshold: int) -> tuple[str, int, int]:
     return "".join(parts), w, h
 
 
+def cut_lockup() -> None:
+    """Crop the stacked lockup above the socials and key its black ground out.
+
+    The mark is bright on black, so max(r, g, b) is both how opaque a pixel
+    should be and how much the ground has darkened it. Dividing the colour back
+    up by that same figure undoes the darkening, which is what keeps the wing
+    edges orange instead of leaving a black fringe once the tile is gone.
+    """
+    im = Image.open(SRC / "logo-lockup.jpeg").convert("RGB").crop(LOCKUP_BOX)
+    a = np.asarray(im).astype(np.float32)
+
+    alpha = a.max(axis=2)
+    ink = alpha > LOCKUP_FLOOR
+    colour = np.zeros_like(a)
+    np.divide(a * 255.0, alpha[..., None], out=colour, where=ink[..., None])
+
+    rgba = np.dstack([colour.clip(0, 255), np.where(ink, alpha, 0)])
+    out = Image.fromarray(rgba.astype(np.uint8), "RGBA")
+    w, h = out.size
+    out = out.resize((LOCKUP_WIDTH, round(h * LOCKUP_WIDTH / w)), Image.LANCZOS)
+
+    IMAGES.mkdir(parents=True, exist_ok=True)
+    out.save(IMAGES / "logo-lockup.png", optimize=True)
+    print(f"lockup {out.size[0]}x{out.size[1]}  images/brand/logo-lockup.png")
+
+
 PATHS_HEADER = '''/**
  * GENERATED FILE. Do not edit by hand.
  *
@@ -140,6 +182,8 @@ PATHS_HEADER = '''/**
 def main() -> None:
     if not SRC.is_dir():
         sys.exit(f"Logo sources not found at {SRC}")
+
+    cut_lockup()
 
     marks: dict[str, tuple[str, int, int]] = {}
     for job in JOBS:

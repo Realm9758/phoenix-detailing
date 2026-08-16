@@ -19,6 +19,7 @@
  * Alt text lives in content/site.ts alongside the rest of the site's words.
  */
 
+import logoLockup from "./brand/logo-lockup.png";
 import amgFoam from "./work/amg-foam.webp";
 import amgFinished from "./work/amg-finished.webp";
 import mclarenUnit from "./work/mclaren-unit.webp";
@@ -32,6 +33,19 @@ import macanHex from "./work/macan-hex.webp";
 import bentleyBonnet from "./work/bentley-bonnet.webp";
 import gtrRear from "./work/gtr-rear.webp";
 import defenderOutside from "./work/defender-outside.webp";
+
+/**
+ * Brand artwork, which is not photography and does not belong in `photos`.
+ *
+ * `logoLockup` is Scott's stacked lockup exactly as he draws it, cut above the
+ * social row by `tools/build-brand.py` and keyed off its black tile, so the
+ * gradient and the strapline survive. Everywhere else on the site the mark is
+ * the traced flat-vinyl version in `components/PhoenixMark.tsx`.
+ */
+export const brand = {
+  /** Bird over PHOENIX over DETAILING \ VALETING, transparent ground. */
+  logoLockup,
+} as const;
 
 export const photos = {
   /** Mercedes-AMG E-Class under snow foam. Pairs with `amgFinished`. */
