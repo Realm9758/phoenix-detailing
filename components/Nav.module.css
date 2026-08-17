@@ -9,14 +9,15 @@
   border-bottom: 1px solid var(--line);
 }
 
-/* The lockup is stacked, so the bar is deeper than a wordmark-only bar would
-   need to be: it is sized to give the artwork room rather than to crop it. */
+/* The lockup is stacked three deep, so the bar is deeper than a wordmark-only
+   bar would need to be: it is sized to give the artwork room rather than to
+   crop it. */
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--s4);
-  min-height: 5.5rem;
+  min-height: 6.25rem;
 }
 
 /* Logo lockup: Scott's stacked artwork, ground keyed out so it sits straight
@@ -28,10 +29,12 @@
 }
 
 /* Height-led, because the bar's constraint is vertical and the artwork's
-   proportion should follow from that rather than from a chosen width. */
+   proportion should follow from that rather than from a chosen width. The
+   script line takes the bottom sixth, so the height carries a sixth more than
+   the bird and wordmark alone would need. */
 .logo {
   width: auto;
-  height: 3.5rem;
+  height: 4.25rem;
 }
 
 /* On a phone this is the only way to reach a section, so it ships at every
@@ -102,7 +105,7 @@
 
 @media (min-width: 52rem) {
   .logo {
-    height: 4rem;
+    height: 4.75rem;
   }
 
   .links {

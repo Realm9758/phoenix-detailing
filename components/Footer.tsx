@@ -1,5 +1,5 @@
 import { business, footer } from "@/content/site";
-import { PhoenixMark } from "./PhoenixMark";
+import { Lockup } from "./Lockup";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "./icons";
 import { whatsappHref } from "@/content/site";
 import styles from "./Footer.module.css";
@@ -8,13 +8,12 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`shell ${styles.inner}`}>
+        {/* The same lockup the bar carries. It already reads "Phoenix /
+            Detailing Cardiff", so the name is not set in type beside it as
+            well; its alt text carries the full name. */}
         <div className={styles.lockup}>
-          <PhoenixMark />
-          <span>
-            <span className={styles.name}>{business.fullName}</span>
-            <br />
-            <span className={styles.line}>{footer.line}</span>
-          </span>
+          <Lockup className={styles.logo} />
+          <span className={styles.line}>{footer.line}</span>
         </div>
 
         <div className={styles.socials}>

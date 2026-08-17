@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Big_Shoulders, Chivo } from "next/font/google";
 import { business, services } from "@/content/site";
-import { PhoenixSprite } from "@/components/PhoenixMark";
 import "./globals.css";
 
 /**
@@ -39,18 +38,18 @@ const text = Chivo({
 const siteUrl = business.siteUrl as string;
 
 const description =
-  "Vehicle valeting, full interior and exterior detailing and accredited ceramic coating in Cardiff. Paint correction, window tinting, end-of-lease deep cleans and fleet work. Message Scott for a price.";
+  "Full interior and exterior vehicle detailing and accredited ceramic coating in Cardiff. Paint correction, window tinting, end-of-lease deep cleans and fleet work. Message Scott for a price.";
 
 export const metadata: Metadata = {
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
   title: {
-    default: "Phoenix Detailing Cardiff: valeting, detailing & ceramic coating",
+    default: "Phoenix Detailing Cardiff: vehicle detailing & ceramic coating",
     template: "%s · Phoenix Detailing Cardiff",
   },
   description,
   keywords: [
     "car detailing Cardiff",
-    "valeting Cardiff",
+    "vehicle detailing Cardiff",
     "ceramic coating Cardiff",
     "paint correction Cardiff",
     "window tinting Cardiff",
@@ -124,8 +123,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Scott's logo geometry, defined once and referenced by every mark. */}
-        <PhoenixSprite />
         {children}
       </body>
     </html>

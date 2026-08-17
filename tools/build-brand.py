@@ -23,13 +23,16 @@ The traced marks keep the strapline out: "just keep the phoenix and the bird"
 was the instruction for that pass, and the social icons and the handle are
 cropped away and never traced.
 
-This script also cuts one raster. On 16 August 2026 the user asked for the
-nav's top-left logo to be Scott's stacked lockup as drawn; on 17 August 2026
-they asked for the strapline to come off it, so the cut now stops at the foot
-of the wordmark and the raster is bird over PHOENIX. The artwork is
-bright-on-black, so its own luminance is its alpha: keying the ground out that
-way gives a mark that sits on any surface with no black tile behind it and no
-halo, which a straight JPEG crop cannot do.
+This script also cuts one raster, which is now the logo everywhere on the page.
+On 16 August 2026 the user asked for the nav's top-left logo to be Scott's
+stacked lockup as drawn. On 17 August 2026 they asked for the sans strapline to
+come off it and for "Detailing Cardiff", in the script from his older flat
+logo, to sit under every logo instead. So the cut stops at the foot of the
+wordmark and the script is composed back on beneath it.
+
+The artwork is bright-on-black, so its own luminance is its alpha: keying the
+ground out that way gives a mark that sits on any surface with no black tile
+behind it and no halo, which a straight JPEG crop cannot do.
 
 Requires the pure-python potrace port:  python3 -m pip install potracer
 
@@ -87,12 +90,30 @@ JOBS = [
 
 # The raster lockup: bird over wordmark, trimmed to the ink on all four sides
 # so the CSS sizes the mark itself and not the artwork's margins. The bottom
-# edge is the foot of PHOENIX, which leaves the strapline below it uncut.
+# edge is the foot of PHOENIX, which leaves the sans strapline below it uncut.
 LOCKUP_BOX = (31, 40, 1099, 836)
 # Below this the source is JPEG noise in the black ground, not artwork.
 LOCKUP_FLOOR = 18
 # Wide enough for a 3x nav and for anywhere else the lockup might land later.
 LOCKUP_WIDTH = 720
+
+# The wordmark's own ink inside `logo-lockup.jpeg`. The script below is set
+# against this, not against the bird: the bird is wider, so the two centres and
+# the two widths are different measurements.
+WORD_BOX = (70, 729, 1059, 835)
+
+# "Detailing Cardiff" in Scott's script, which the gradient lockup does not
+# carry. It comes off his older flat logo, where the same script sits under the
+# same wordmark, so the proportions below are his own rather than chosen here:
+# in that file the script is 0.96 of the wordmark's width and stands off its
+# foot by 0.13 of the wordmark's height.
+SCRIPT_SRC = "logo-flat-older.jpeg"
+SCRIPT_BOX = (78, 835, 1983, 1090)
+# Flat orange on black, printed harder than the gradient artwork, so the noise
+# floor sits higher than the lockup's.
+SCRIPT_FLOOR = 40
+SCRIPT_WIDTH_RATIO = 0.96
+SCRIPT_GAP_RATIO = 0.13
 
 # potrace settings. `alphamax` low keeps the corners the artwork actually has
 # (the wordmark's notch cuts, the tail points) from being rounded into blobs.
@@ -143,24 +164,52 @@ def trace(im: Image.Image, threshold: int) -> tuple[str, int, int]:
     return "".join(parts), w, h
 
 
-def cut_lockup() -> None:
-    """Crop the stacked lockup above the socials and key its black ground out.
+def key_ground(im: Image.Image, floor: int) -> Image.Image:
+    """Key the black tile out of bright-on-black artwork.
 
     The mark is bright on black, so max(r, g, b) is both how opaque a pixel
     should be and how much the ground has darkened it. Dividing the colour back
     up by that same figure undoes the darkening, which is what keeps the wing
     edges orange instead of leaving a black fringe once the tile is gone.
     """
-    im = Image.open(SRC / "logo-lockup.jpeg").convert("RGB").crop(LOCKUP_BOX)
-    a = np.asarray(im).astype(np.float32)
+    a = np.asarray(im.convert("RGB")).astype(np.float32)
 
     alpha = a.max(axis=2)
-    ink = alpha > LOCKUP_FLOOR
+    ink = alpha > floor
     colour = np.zeros_like(a)
     np.divide(a * 255.0, alpha[..., None], out=colour, where=ink[..., None])
 
     rgba = np.dstack([colour.clip(0, 255), np.where(ink, alpha, 0)])
-    out = Image.fromarray(rgba.astype(np.uint8), "RGBA")
+    return Image.fromarray(rgba.astype(np.uint8), "RGBA")
+
+
+def cut_lockup() -> None:
+    """Cut the stacked lockup and set Scott's script line under it.
+
+    Two sources meet here, both keyed the same way: the gradient bird and
+    wordmark from the lockup he draws now, and "Detailing Cardiff" from the
+    older flat logo, which is the only place that script exists. They are
+    composed once, into one file, so every logo on the page is the same pixels
+    and none of them can drift.
+    """
+    top = key_ground(Image.open(SRC / "logo-lockup.jpeg").crop(LOCKUP_BOX), LOCKUP_FLOOR)
+    script = key_ground(Image.open(SRC / SCRIPT_SRC).crop(SCRIPT_BOX), SCRIPT_FLOOR)
+
+    word_w = WORD_BOX[2] - WORD_BOX[0]
+    word_h = WORD_BOX[3] - WORD_BOX[1]
+    script_w = round(word_w * SCRIPT_WIDTH_RATIO)
+    script_h = round(script.height * script_w / script.width)
+    script = script.resize((script_w, script_h), Image.LANCZOS)
+
+    # The gap is measured off the foot of the wordmark's ink, and LOCKUP_BOX
+    # already stops a hair below that, so the crop's own overshoot comes back
+    # out of it.
+    gap = round(word_h * SCRIPT_GAP_RATIO) - (LOCKUP_BOX[3] - WORD_BOX[3])
+    out = Image.new("RGBA", (top.width, top.height + gap + script_h), (0, 0, 0, 0))
+    out.paste(top, (0, 0))
+    word_centre = (WORD_BOX[0] + WORD_BOX[2]) // 2 - LOCKUP_BOX[0]
+    out.paste(script, (word_centre - script_w // 2, top.height + gap), script)
+
     w, h = out.size
     out = out.resize((LOCKUP_WIDTH, round(h * LOCKUP_WIDTH / w)), Image.LANCZOS)
 
@@ -173,9 +222,9 @@ PATHS_HEADER = '''/**
  * GENERATED FILE. Do not edit by hand.
  *
  * Outlines traced from Scott's own logo files by `tools/build-brand.py`.
- * Run `npm run brand` to regenerate. The components that draw these live in
- * `components/PhoenixMark.tsx`, and they are hand-written; only the geometry
- * below is machine-made.
+ * Run `npm run brand` to regenerate. The page itself carries his artwork as
+ * the cut raster in `images/brand`; these outlines are what the favicon is
+ * drawn from, and what any flat one-colour mark would be drawn from next.
  */
 
 '''

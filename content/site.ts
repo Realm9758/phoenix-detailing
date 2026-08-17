@@ -17,12 +17,11 @@
  */
 
 export const business = {
-  // Their logo lockup reads "PHOENIX" over "Detailing Cardiff"; a second
-  // lockup on their show plate reads "PHOENIX / DETAILING & VALETING".
+  // Their logo lockup reads "PHOENIX" over "Detailing Cardiff", which is the
+  // lockup the site carries everywhere. A second lockup on their show plate
+  // reads "PHOENIX / DETAILING & VALETING"; that one is not used here.
   name: "Phoenix Detailing",
   fullName: "Phoenix Detailing Cardiff",
-  // Straight off the show plate in their own photograph.
-  descriptor: "Detailing & Valeting",
   city: "Cardiff",
   // Named personally in six of the eleven Google reviews supplied.
   owner: "Scott",
@@ -86,7 +85,7 @@ export const hero = {
   /** The fragment the headline sets in vinyl orange. Must appear in `headline`. */
   emphasis: "brand new",
   standfirst:
-    "Vehicle valeting, full interior and exterior detailing, and accredited ceramic coating, from a unit in Cardiff. Scott does the work himself.",
+    "Full interior and exterior detailing, and accredited ceramic coating, from a unit in Cardiff. Scott does the work himself.",
   primary: "Message Scott on WhatsApp",
   secondary: `Call ${business.phoneDisplay}`,
   imageAlt:
@@ -102,16 +101,17 @@ export const services = {
   body: "Seven things, all under one roof in Cardiff. Every one of them is on this list because the business published it or a customer described having it done, not because it rounds the list out.",
   items: [
     {
-      name: "Vehicle valeting",
+      name: "Vehicle detailing",
       detail:
         "Inside and out. The way in for most cars, and the job most of the reviews are about.",
-      // Their own workshop banner: "Vehicle Valeting / Detailing".
+      // Their own workshop banner: "Vehicle Valeting / Detailing", named here
+      // as detailing at Scott's request.
       source: "Their own banner",
     },
     {
       name: "Full detailing",
       detail:
-        "Interior and exterior, taken further than a valet goes. Every corner, not just the panels you see first.",
+        "Interior and exterior, taken further than a wash goes. Every corner, not just the panels you see first.",
       // Their own banner, plus their own Instagram caption: "Mercedes AMG in
       // for a full interior and exterior detail".
       source: "Their own banner and Instagram",
@@ -312,15 +312,16 @@ export const contact = {
 } as const;
 
 export const footer = {
-  // Their own banner carries this line beneath the logo.
-  line: "Vehicle Valeting / Detailing · Accredited Ceramic Coating",
+  // Their own banner carries this line beneath the logo, as "Vehicle Valeting
+  // / Detailing". Scott asked on 17 August 2026 for the valeting half to come
+  // off the site, so the work is named as detailing throughout.
+  line: "Vehicle Detailing · Accredited Ceramic Coating",
   /**
    * The same banner line broken into its parts, so the hero strip wraps
    * between claims instead of orphaning half of one.
    */
   credentials: [
-    "Vehicle Valeting",
-    "Detailing",
+    "Vehicle Detailing",
     "Accredited Ceramic Coating",
   ],
 } as const;

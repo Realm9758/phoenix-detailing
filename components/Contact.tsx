@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { business, contact, whatsappHref } from "@/content/site";
 import { photos } from "@/images";
-import { PhoenixMark, PhoenixWordmark } from "./PhoenixMark";
+import { Lockup } from "./Lockup";
 import { InstagramIcon, PhoneIcon, WhatsAppIcon } from "./icons";
 import styles from "./Contact.module.css";
 
@@ -49,15 +49,10 @@ export function Contact() {
 
           <p className={styles.note}>{contact.priceNote}</p>
 
-          {/* His own show plate, rebuilt: the mark, the wordmark, the line off
-              the plate itself. Flat vinyl here, where the nav carries the
-              artwork as he draws it. */}
+          {/* His own show plate, rebuilt: the same lockup the bar and the
+              footer carry, on the plate's black ground. */}
           <div className={`plate ${styles.plateBlock}`}>
-            <PhoenixMark className={styles.plateMark} />
-            <span className={styles.plateLines}>
-              <PhoenixWordmark className={styles.plateWord} title={business.name} />
-              <span className={styles.plateSub}>{business.descriptor}</span>
-            </span>
+            <Lockup className={styles.plateLogo} />
           </div>
         </div>
 

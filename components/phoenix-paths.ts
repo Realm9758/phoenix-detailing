@@ -2,9 +2,9 @@
  * GENERATED FILE. Do not edit by hand.
  *
  * Outlines traced from Scott's own logo files by `tools/build-brand.py`.
- * Run `npm run brand` to regenerate. The components that draw these live in
- * `components/PhoenixMark.tsx`, and they are hand-written; only the geometry
- * below is machine-made.
+ * Run `npm run brand` to regenerate. The page itself carries his artwork as
+ * the cut raster in `images/brand`; these outlines are what the favicon is
+ * drawn from, and what any flat one-colour mark would be drawn from next.
  */
 
 export const bird = {

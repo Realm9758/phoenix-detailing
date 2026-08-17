@@ -24,36 +24,16 @@
 
 /* The show plate: their own artifact, rebuilt as the contact block. */
 .plateBlock {
-  display: flex;
-  align-items: center;
-  gap: var(--s3);
-  padding: var(--s3) var(--s4);
-  max-width: 26rem;
-}
-
-.plateMark {
-  width: 3.25rem;
-  color: var(--orange);
-  flex-shrink: 0;
-}
-
-.plateLines {
   display: grid;
-  gap: 0.375rem;
+  place-items: center;
+  padding: var(--s4) var(--s5);
+  max-width: 18rem;
 }
 
-.plateWord {
-  width: 9rem;
-  color: var(--paper);
-}
-
-.plateSub {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-3);
+/* Height-led, like the bar's copy and the footer's: one mark, three sizes. */
+.plateLogo {
+  width: auto;
+  height: 8rem;
 }
 
 .rows {
