@@ -24,8 +24,9 @@ was the instruction for that pass, and the social icons and the handle are
 cropped away and never traced.
 
 This script also cuts one raster. On 16 August 2026 the user asked for the
-nav's top-left logo to be Scott's stacked lockup as drawn, strapline included,
-with everything below "DETAILING \\ VALETING" cropped off. The artwork is
+nav's top-left logo to be Scott's stacked lockup as drawn; on 17 August 2026
+they asked for the strapline to come off it, so the cut now stops at the foot
+of the wordmark and the raster is bird over PHOENIX. The artwork is
 bright-on-black, so its own luminance is its alpha: keying the ground out that
 way gives a mark that sits on any surface with no black tile behind it and no
 halo, which a straight JPEG crop cannot do.
@@ -60,7 +61,7 @@ IMAGES = ROOT / "images" / "brand"
 # than eyeballed once. `logo-lockup.jpeg` stacks its parts:
 #     40..671   bird
 #     728..834  PHOENIX
-#     891..918  DETAILING \ VALETING   <- kept by the raster, not traced
+#     891..918  DETAILING \ VALETING   <- cropped away everywhere
 #     1029..    social icons, handle   <- cropped away everywhere
 JOBS = [
     {
@@ -84,9 +85,10 @@ JOBS = [
     },
 ]
 
-# The raster lockup: the same three bands as above, trimmed to the ink on all
-# four sides so the CSS sizes the mark itself and not the artwork's margins.
-LOCKUP_BOX = (31, 40, 1099, 919)
+# The raster lockup: bird over wordmark, trimmed to the ink on all four sides
+# so the CSS sizes the mark itself and not the artwork's margins. The bottom
+# edge is the foot of PHOENIX, which leaves the strapline below it uncut.
+LOCKUP_BOX = (31, 40, 1099, 836)
 # Below this the source is JPEG noise in the black ground, not artwork.
 LOCKUP_FLOOR = 18
 # Wide enough for a 3x nav and for anywhere else the lockup might land later.
